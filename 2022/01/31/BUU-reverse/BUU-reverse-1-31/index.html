@@ -1,0 +1,207 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>BUU_reverse_1_31 | ke1os' blog</title><meta name="keywords" content="BUU-reverse练习"><meta name="author" content="ke1os"><meta name="copyright" content="ke1os"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="[WUSTCTF2020]Cr0ssfun(水题) [FlareOn6]Overlong(od动调)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BUU_reverse_1_31">
+<meta property="og:url" content="http://ke1os.top/2022/01/31/BUU-reverse/BUU-reverse-1-31/index.html">
+<meta property="og:site_name" content="ke1os&#39; blog">
+<meta property="og:description" content="[WUSTCTF2020]Cr0ssfun(水题) [FlareOn6]Overlong(od动调)">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+<meta property="article:published_time" content="2022-01-31T07:09:01.000Z">
+<meta property="article:modified_time" content="2022-03-13T17:29:15.429Z">
+<meta property="article:author" content="ke1os">
+<meta property="article:tag" content="BUU-reverse练习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><link rel="shortcut icon" href="/img/ke1os.jpg"><link rel="canonical" href="http://ke1os.top/2022/01/31/BUU-reverse/BUU-reverse-1-31/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'BUU_reverse_1_31',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-03-14 01:29:15'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.1.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/ke1os.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">31</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">6</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">ke1os' blog</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">BUU_reverse_1_31</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-01-31T07:09:01.000Z" title="Created 2022-01-31 15:09:01">2022-01-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-03-13T17:29:15.429Z" title="Updated 2022-03-14 01:29:15">2022-03-14</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="BUU_reverse_1_31"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><ul>
+<li><a href="#wustctf2020cr0ssfun%E6%B0%B4%E9%A2%98">[WUSTCTF2020]Cr0ssfun(水题)</a></li>
+<li><a href="#flareon6overlongod%E5%8A%A8%E8%B0%83">[FlareOn6]Overlong(od动调)</a><span id="more"></span></li>
+</ul>
+<h1 id="WUSTCTF2020-Cr0ssfun-水题"><a href="#WUSTCTF2020-Cr0ssfun-水题" class="headerlink" title="[WUSTCTF2020]Cr0ssfun(水题)"></a>[WUSTCTF2020]Cr0ssfun(水题)</h1><img src="/2022/01/31/BUU-reverse/BUU-reverse-1-31/image-20220131151007881.png" class="" title="image-20220131151007881">
+
+<p>先查个壳，用ida64打开</p>
+<img src="/2022/01/31/BUU-reverse/BUU-reverse-1-31/image-20220131151140745.png" class="" title="image-20220131151140745">
+
+<p>可以看到v4是我们输入的flag,check函数是比较函数，我们跟进</p>
+<img src="/2022/01/31/BUU-reverse/BUU-reverse-1-31/image-20220131151248543.png" class="" title="image-20220131151248543">
+
+<p>继续跟进……</p>
+<img src="/2022/01/31/BUU-reverse/BUU-reverse-1-31/image-20220131151325311.png" class="" title="image-20220131151325311">
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">_BOOL8 __fastcall iven_1s_educated(_BYTE *a1)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">return</span> *a1 == <span class="number">119</span> &amp;&amp; a1[<span class="number">6</span>] == <span class="number">50</span> &amp;&amp; a1[<span class="number">22</span>] == <span class="number">115</span> &amp;&amp; a1[<span class="number">31</span>] == <span class="number">110</span> &amp;&amp; a1[<span class="number">12</span>] == <span class="number">95</span> &amp;&amp; (unsigned <span class="built_in">int</span>)iven_1s_brave(a1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>继续跟进……</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">_BOOL8 __fastcall iven_1s_brave(_BYTE *a1)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">return</span> a1[<span class="number">15</span>] == <span class="number">100</span></span><br><span class="line">      &amp;&amp; a1[<span class="number">8</span>] == <span class="number">123</span></span><br><span class="line">      &amp;&amp; a1[<span class="number">18</span>] == <span class="number">51</span></span><br><span class="line">      &amp;&amp; a1[<span class="number">28</span>] == <span class="number">95</span></span><br><span class="line">      &amp;&amp; a1[<span class="number">21</span>] == <span class="number">114</span></span><br><span class="line">      &amp;&amp; (unsigned <span class="built_in">int</span>)iven_1s_great(a1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">_BOOL8 __fastcall iven_1s_great(_BYTE *a1)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">return</span> a1[<span class="number">2</span>] == <span class="number">116</span></span><br><span class="line">      &amp;&amp; a1[<span class="number">9</span>] == <span class="number">99</span></span><br><span class="line">      &amp;&amp; a1[<span class="number">32</span>] == <span class="number">125</span></span><br><span class="line">      &amp;&amp; a1[<span class="number">19</span>] == <span class="number">118</span></span><br><span class="line">      &amp;&amp; a1[<span class="number">5</span>] == <span class="number">48</span></span><br><span class="line">      &amp;&amp; a1[<span class="number">14</span>] == <span class="number">110</span></span><br><span class="line">      &amp;&amp; (unsigned <span class="built_in">int</span>)iven_and_grace(a1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">_BOOL8 __fastcall iven_and_grace(_BYTE *a1)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">return</span> a1[<span class="number">4</span>] == <span class="number">50</span> &amp;&amp; a1[<span class="number">17</span>] == <span class="number">114</span> &amp;&amp; a1[<span class="number">29</span>] == <span class="number">102</span> &amp;&amp; a1[<span class="number">17</span>] == <span class="number">114</span> &amp;&amp; a1[<span class="number">24</span>] == <span class="number">95</span> &amp;&amp; (unsigned <span class="built_in">int</span>)finally_fun(a1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这iven也太自恋了吧……下面是代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">a1 = [<span class="number">0</span>]*<span class="number">40</span></span><br><span class="line"></span><br><span class="line">a1[<span class="number">10</span>] = <span class="number">112</span></span><br><span class="line">a1[<span class="number">13</span>] = <span class="number">64</span></span><br><span class="line">a1[<span class="number">3</span>] = <span class="number">102</span></span><br><span class="line">a1[<span class="number">26</span>] = <span class="number">114</span></span><br><span class="line">a1[<span class="number">20</span>] = <span class="number">101</span></span><br><span class="line">a1[<span class="number">7</span>] = <span class="number">48</span></span><br><span class="line">a1[<span class="number">16</span>] = <span class="number">95</span></span><br><span class="line">a1[<span class="number">11</span>] = <span class="number">112</span></span><br><span class="line">a1[<span class="number">23</span>] = <span class="number">101</span></span><br><span class="line">a1[<span class="number">30</span>] = <span class="number">117</span></span><br><span class="line">a1[<span class="number">0</span>] = <span class="number">119</span></span><br><span class="line">a1[<span class="number">6</span>] = <span class="number">50</span></span><br><span class="line">a1[<span class="number">22</span>] = <span class="number">115</span></span><br><span class="line">a1[<span class="number">31</span>] = <span class="number">110</span></span><br><span class="line">a1[<span class="number">12</span>] = <span class="number">95</span></span><br><span class="line">a1[<span class="number">15</span>] = <span class="number">100</span></span><br><span class="line">a1[<span class="number">8</span>] = <span class="number">123</span></span><br><span class="line">a1[<span class="number">18</span>] = <span class="number">51</span></span><br><span class="line">a1[<span class="number">28</span>] = <span class="number">95</span></span><br><span class="line">a1[<span class="number">21</span>] = <span class="number">114</span></span><br><span class="line">a1[<span class="number">2</span>] = <span class="number">116</span></span><br><span class="line">a1[<span class="number">9</span>] = <span class="number">99</span></span><br><span class="line">a1[<span class="number">32</span>] = <span class="number">125</span></span><br><span class="line">a1[<span class="number">19</span>] = <span class="number">118</span></span><br><span class="line">a1[<span class="number">5</span>] = <span class="number">48</span></span><br><span class="line">a1[<span class="number">14</span>] = <span class="number">110</span></span><br><span class="line">a1[<span class="number">4</span>] = <span class="number">50</span></span><br><span class="line">a1[<span class="number">17</span>] = <span class="number">114</span></span><br><span class="line">a1[<span class="number">29</span>] = <span class="number">102</span></span><br><span class="line">a1[<span class="number">17</span>] = <span class="number">114</span></span><br><span class="line">a1[<span class="number">24</span>] = <span class="number">95</span></span><br><span class="line">a1[<span class="number">1</span>] = <span class="number">99</span></span><br><span class="line">a1[<span class="number">25</span>] = <span class="number">64</span></span><br><span class="line">a1[<span class="number">27</span>] = <span class="number">101</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> a1:</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">chr</span>(i),end = <span class="string">&#x27;&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>wctf2020{cpp_@nd_r3verse_@re_fun}</p>
+<h1 id="FlareOn6-Overlong-od动调"><a href="#FlareOn6-Overlong-od动调" class="headerlink" title="[FlareOn6]Overlong(od动调)"></a>[FlareOn6]Overlong(od动调)</h1><img src="/2022/01/31/BUU-reverse/BUU-reverse-1-31/image-20220131152212520.png" class="" title="image-20220131152212520">
+
+<p>差壳，啥意思？要用ide试试？</p>
+<img src="/2022/01/31/BUU-reverse/BUU-reverse-1-31/image-20220131152301428.png" class="" title="image-20220131152301428">
+
+<p>我也没看出来个啥，运行了一下，到时候上ida直接查找这句话。</p>
+<img src="/2022/01/31/BUU-reverse/BUU-reverse-1-31/image-20220131152338798.png" class="" title="image-20220131152338798">
+
+<p>打开ida32查看，</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span> __stdcall start(<span class="built_in">int</span> a1, <span class="built_in">int</span> a2, <span class="built_in">int</span> a3, <span class="built_in">int</span> a4)</span><br><span class="line">&#123;</span><br><span class="line">  CHAR Text[<span class="number">128</span>]; // [esp+0h] [ebp-84h] BYREF</span><br><span class="line">  <span class="built_in">int</span> v6; // [esp+80h] [ebp-4h]</span><br><span class="line"></span><br><span class="line">  v6 = sub_401160(Text, &amp;unk_402008, <span class="number">28</span>);</span><br><span class="line">  Text[v6] = <span class="number">0</span>;</span><br><span class="line">  MessageBoxA(<span class="number">0</span>, Text, Caption, <span class="number">0</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>unk_402008,中有很多数字，但最后弹出的框中，只有28个数字……</p>
+<img src="BUU-reverse-1-31/image-20220201095845756.png" alt="image-20220201095845756" style="zoom:80%;" />
+
+<p>写了很多代码之后，解不出来……</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/P_Black_K/article/details/122342264">https://blog.csdn.net/P_Black_K/article/details/122342264</a></p>
+<p>原来是要去用od去动调这个28啊……</p>
+<img src="/2022/01/31/BUU-reverse/BUU-reverse-1-31/image-20220201095716636.png" class="" title="image-20220201095716636">
+
+<p>我用的是吾爱破解的od,打开后可以看到push 0x1c,而这个数字正好是28,我们做的就是去修改这个0x1c。</p>
+<img src="/2022/01/31/BUU-reverse/BUU-reverse-1-31/image-20220201100036946.png" class="" title="image-20220201100036946">
+
+<img src="/2022/01/31/BUU-reverse/BUU-reverse-1-31/image-20220201100051808.png" class="" title="image-20220201100051808">
+
+<img src="/2022/01/31/BUU-reverse/BUU-reverse-1-31/image-20220201100026237.png" class="" title="image-20220201100026237">
+
+<img src="/2022/01/31/BUU-reverse/BUU-reverse-1-31/image-20220201100115461.png" class="" title="image-20220201100115461">
+
+<img src="/2022/01/31/BUU-reverse/BUU-reverse-1-31/image-20220201100142177.png" class="" title="image-20220201100142177">
+
+<img src="/2022/01/31/BUU-reverse/BUU-reverse-1-31/image-20220201095327787.png" class="" title="image-20220201095327787">
+
+<p>出来了！第一次用od动调程序！！</p>
+<p>flag{<a href="mailto:&#x49;&#x5f;&#97;&#x5f;&#x4d;&#95;&#116;&#x5f;&#x68;&#95;&#101;&#95;&#101;&#x5f;&#x6e;&#x5f;&#x43;&#x5f;&#x6f;&#x5f;&#68;&#95;&#105;&#95;&#x6e;&#95;&#103;&#x40;&#x66;&#x6c;&#x61;&#114;&#x65;&#x2d;&#x6f;&#x6e;&#x2e;&#99;&#111;&#109;">&#x49;&#x5f;&#97;&#x5f;&#x4d;&#95;&#116;&#x5f;&#x68;&#95;&#101;&#95;&#101;&#x5f;&#x6e;&#x5f;&#x43;&#x5f;&#x6f;&#x5f;&#68;&#95;&#105;&#95;&#x6e;&#95;&#103;&#x40;&#x66;&#x6c;&#x61;&#114;&#x65;&#x2d;&#x6f;&#x6e;&#x2e;&#99;&#111;&#109;</a>}</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">ke1os</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://ke1os.top/2022/01/31/BUU-reverse/BUU-reverse-1-31/">http://ke1os.top/2022/01/31/BUU-reverse/BUU-reverse-1-31/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/BUU-reverse%E7%BB%83%E4%B9%A0/">BUU-reverse练习</a></div><div class="post_share"><div class="social-share" data-image="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/02/01/BUU-reverse/BUU-reverse-2-1/"><img class="prev-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">BUU_reverse_2_1</div></div></a></div><div class="next-post pull-right"><a href="/2022/01/30/BUU-reverse/BUU-reverse-1-30/"><img class="next-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">BUU_reverse_1_30</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2022/01/29/BUU-reverse/BUU-reverse-1-29/" title="BUU_reverse_1_29"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-29</div><div class="title">BUU_reverse_1_29</div></div></a></div><div><a href="/2022/01/30/BUU-reverse/BUU-reverse-1-30/" title="BUU_reverse_1_30"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-30</div><div class="title">BUU_reverse_1_30</div></div></a></div><div><a href="/2022/02/01/BUU-reverse/BUU-reverse-2-1/" title="BUU_reverse_2_1"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-01</div><div class="title">BUU_reverse_2_1</div></div></a></div><div><a href="/2022/02/02/BUU-reverse/BUU-reverse-2-2/" title="BUU_reverse_2_2"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-02</div><div class="title">BUU_reverse_2_2</div></div></a></div><div><a href="/2022/02/23/BUU-reverse/BUU-reverse-2-24/" title="BUU-reverse-2-24"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-23</div><div class="title">BUU-reverse-2-24</div></div></a></div><div><a href="/2022/02/25/BUU-reverse/BUU-reverse-2-25/" title="BUU-reverse-2-25"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-25</div><div class="title">BUU-reverse-2-25</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/ke1os.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">ke1os</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">31</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">6</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://www.ke1os.top"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#WUSTCTF2020-Cr0ssfun-%E6%B0%B4%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">[WUSTCTF2020]Cr0ssfun(水题)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#FlareOn6-Overlong-od%E5%8A%A8%E8%B0%83"><span class="toc-number">2.</span> <span class="toc-text">[FlareOn6]Overlong(od动调)</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/03/11/BUU-reverse/BUU-reverse-3-11/" title="BUU-reverse-3-11"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="BUU-reverse-3-11"/></a><div class="content"><a class="title" href="/2022/03/11/BUU-reverse/BUU-reverse-3-11/" title="BUU-reverse-3-11">BUU-reverse-3-11</a><time datetime="2022-03-11T12:03:11.000Z" title="Created 2022-03-11 20:03:11">2022-03-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/10/BUU-reverse/BUU-reverse-3-10/" title="BUU-reverse-3-10"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="BUU-reverse-3-10"/></a><div class="content"><a class="title" href="/2022/03/10/BUU-reverse/BUU-reverse-3-10/" title="BUU-reverse-3-10">BUU-reverse-3-10</a><time datetime="2022-03-10T09:06:41.000Z" title="Created 2022-03-10 17:06:41">2022-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/09/BUU-reverse/BUU-reverse-3-9/" title="BUU-reverse-3-9"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="BUU-reverse-3-9"/></a><div class="content"><a class="title" href="/2022/03/09/BUU-reverse/BUU-reverse-3-9/" title="BUU-reverse-3-9">BUU-reverse-3-9</a><time datetime="2022-03-09T12:13:29.000Z" title="Created 2022-03-09 20:13:29">2022-03-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/09/BUU-reverse/BUU-reverse-3-8/" title="BUU-reverse-3-8"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="BUU-reverse-3-8"/></a><div class="content"><a class="title" href="/2022/03/09/BUU-reverse/BUU-reverse-3-8/" title="BUU-reverse-3-8">BUU-reverse-3-8</a><time datetime="2022-03-08T16:38:18.000Z" title="Created 2022-03-09 00:38:18">2022-03-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/06/BUU-reverse/BUU-reverse-3-6/" title="BUU-reverse-3-6"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="BUU-reverse-3-6"/></a><div class="content"><a class="title" href="/2022/03/06/BUU-reverse/BUU-reverse-3-6/" title="BUU-reverse-3-6">BUU-reverse-3-6</a><time datetime="2022-03-06T02:45:03.000Z" title="Created 2022-03-06 10:45:03">2022-03-06</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By ke1os</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
