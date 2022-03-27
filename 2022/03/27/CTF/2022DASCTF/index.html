@@ -1,0 +1,269 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>2022DASCTF | ke1os' blog</title><meta name="keywords" content="CTF赛后复现"><meta name="author" content="ke1os"><meta name="copyright" content="ke1os"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="解出来两题，别的题目等有空再复现 reverseeasyrere签到题，首先是查壳，AS壳，脱壳动调不起来。在此非常感谢Facker007师傅，否则我解不出来😂。       ASpack脱壳赛后学习一下如何脱壳： 第一步，运行pushad这个指令，然后发现之后esp改变了，这时候可以使用ESP定律了     第二步，在改变的esp处，右键，数据窗口跟随     第三步，下硬件断点无论选择多">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2022DASCTF">
+<meta property="og:url" content="http://ke1os.top/2022/03/27/CTF/2022DASCTF/index.html">
+<meta property="og:site_name" content="ke1os&#39; blog">
+<meta property="og:description" content="解出来两题，别的题目等有空再复现 reverseeasyrere签到题，首先是查壳，AS壳，脱壳动调不起来。在此非常感谢Facker007师傅，否则我解不出来😂。       ASpack脱壳赛后学习一下如何脱壳： 第一步，运行pushad这个指令，然后发现之后esp改变了，这时候可以使用ESP定律了     第二步，在改变的esp处，右键，数据窗口跟随     第三步，下硬件断点无论选择多">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+<meta property="article:published_time" content="2022-03-27T12:59:10.000Z">
+<meta property="article:modified_time" content="2022-03-27T16:23:51.638Z">
+<meta property="article:author" content="ke1os">
+<meta property="article:tag" content="CTF赛后复现">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><link rel="shortcut icon" href="/img/ke1os.jpg"><link rel="canonical" href="http://ke1os.top/2022/03/27/CTF/2022DASCTF/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '2022DASCTF',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-03-28 00:23:51'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.1.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/ke1os.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">13</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">9</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">ke1os' blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">2022DASCTF</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-03-27T12:59:10.000Z" title="Created 2022-03-27 20:59:10">2022-03-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-03-27T16:23:51.638Z" title="Updated 2022-03-28 00:23:51">2022-03-28</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="2022DASCTF"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><span id="more"></span>
+
+<p>解出来两题，别的题目等有空再复现</p>
+<h1 id="reverse"><a href="#reverse" class="headerlink" title="reverse"></a>reverse</h1><h2 id="easyre"><a href="#easyre" class="headerlink" title="easyre"></a>easyre</h2><p>re签到题，首先是查壳，AS壳，脱壳动调不起来。在此非常感谢Facker007师傅，否则我解不出来😂。</p>
+<img src="/2022/03/27/CTF/2022DASCTF/image-20220327223246025.png" class="" title="image-20220327223246025">
+
+<img src="/2022/03/27/CTF/2022DASCTF/image-20220327210828897.png" class="" title="image-20220327210828897">
+
+
+
+<h3 id="ASpack脱壳"><a href="#ASpack脱壳" class="headerlink" title="ASpack脱壳"></a>ASpack脱壳</h3><p>赛后学习一下如何脱壳：</p>
+<p>第一步，运行pushad这个指令，然后发现之后esp改变了，这时候可以使用ESP定律了</p>
+<img src="/2022/03/27/CTF/2022DASCTF/image-20220327223552078.png" class="" title="image-20220327223552078">
+
+
+
+<p>第二步，在改变的esp处，右键，数据窗口跟随</p>
+<img src="/2022/03/27/CTF/2022DASCTF/image-20220327223816272.png" class="" title="image-20220327223816272">
+
+
+
+<p>第三步，下硬件断点无论选择多少个字节，只要第一个字节是esp所指向的就行，然后下硬件断点，随便是什么大小都行</p>
+<img src="/2022/03/27/CTF/2022DASCTF/image-20220327224354445.png" class="" title="image-20220327224354445">
+
+
+
+<p>第四步，F9+数次F8，遇到一个retn大跳转，跳转到奇怪的地方，右键分析，从模块中删除分析<img src="/2022/03/27/CTF/2022DASCTF/image-20220327224531736.png" class="" title="image-20220327224531736"></p>
+<img src="/2022/03/27/CTF/2022DASCTF/image-20220327224656929.png" class="" title="image-20220327224656929">
+
+
+
+<p>第五步，删除断点</p>
+<img src="/2022/03/27/CTF/2022DASCTF/image-20220327224808080.png" class="" title="image-20220327224808080">
+
+
+
+<p>第六步，右键选择od脱壳插件，点击脱壳，选择地方保存即可。可以选择重建或者不重建输入表，都可以试一试。</p>
+<img src="/2022/03/27/CTF/2022DASCTF/image-20220327224829296.png" class="" title="image-20220327224829296">
+
+<img src="/2022/03/27/CTF/2022DASCTF/image-20220327224856680.png" class="" title="image-20220327224856680">
+
+
+
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>用die查看还能查看到壳</p>
+<img src="/2022/03/27/CTF/2022DASCTF/image-20220327225601644.png" class="" title="image-20220327225601644">
+
+
+
+<p>但是用exeinfope查看，已经识别不出来了</p>
+<img src="/2022/03/27/CTF/2022DASCTF/image-20220327225646261.png" class="" title="image-20220327225646261">
+
+
+
+<p>放入ida中反汇编，上面那么多的函数，只有最后一个是对输入的字符串进行转换，跟进</p>
+<img src="/2022/03/27/CTF/2022DASCTF/image-20220327225738110.png" class="" title="image-20220327225738110">
+
+
+
+<p>动调后发现，真正有效的，只有最后的异或，Str是input，与dword_492940数组异或之后，与v2数组对比</p>
+<img src="/2022/03/27/CTF/2022DASCTF/image-20220327225902776.png" class="" title="image-20220327225902776">
+
+
+
+<p>输入符合条件的字符（或者直接头铁修改汇编&#x2F;flag寄存器可以）</p>
+<img src="/2022/03/27/CTF/2022DASCTF/image-20220327230809587.png" class="" title="image-20220327230809587">
+
+
+
+<p>跟进最后的sub_401771函数（tab键切换显示）</p>
+<img src="/2022/03/27/CTF/2022DASCTF/image-20220327230846537.png" class="" title="image-20220327230846537">
+
+<img src="/2022/03/27/CTF/2022DASCTF/image-20220327230856426.png" class="" title="image-20220327230856426">
+
+
+
+<p>只需要在此处下断点，然后f9键，重复循环，记录下eax（注意是低位，也就是最后两位的值，伪代码界面中已规定）的值，也就动调出了dword_492940数组的值</p>
+<img src="/2022/03/27/CTF/2022DASCTF/image-20220327231137786.png" class="" title="image-20220327231137786">
+
+
+
+<p>我用x32dbg，</p>
+<p>下面是脚本：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">arr = [<span class="number">0x38</span>,<span class="number">0x78</span>,<span class="number">0x0D</span>,<span class="number">0xE8</span>,<span class="number">0x0</span>,<span class="number">0xAF</span>,<span class="number">0xBF</span>,<span class="number">0x3A</span>,<span class="number">0x6B</span>,<span class="number">0xFB</span>,<span class="number">0xB8</span>,<span class="number">0x0c</span>,<span class="number">0x85</span>,<span class="number">0x35</span>,<span class="number">0x5c</span>,<span class="number">0xAD</span>,<span class="number">0xE6</span>,<span class="number">0x0</span>,<span class="number">0xE0</span>,<span class="number">0x8A</span>,<span class="number">0x1D</span>,<span class="number">0xBD</span>,<span class="number">0x46</span>,<span class="number">0xD2</span>,<span class="number">0x2B</span>,<span class="number">0x0</span>,<span class="number">0x15</span>,<span class="number">0x24</span>,<span class="number">0xc6</span>,<span class="number">0xad</span>,<span class="number">0xa1</span>,<span class="number">0xc9</span>,<span class="number">0x7b</span>,<span class="number">0x12</span>,<span class="number">0x28</span>,<span class="number">0x0</span>,<span class="number">0x5</span>,<span class="number">0x0</span>,<span class="number">0x72</span>,<span class="number">0x3e</span>,<span class="number">0x10</span>,<span class="number">0xa1</span>]</span><br><span class="line">v2 = [-<span class="number">61</span>,-<span class="number">128</span>,-<span class="number">43</span>,-<span class="number">14</span>,-<span class="number">101</span>,-<span class="number">48</span>,<span class="number">11</span>,-<span class="number">76</span>,<span class="number">85</span>,-<span class="number">34</span>,<span class="number">34</span>,-<span class="number">125</span>,<span class="number">47</span>,-<span class="number">105</span>,-<span class="number">72</span>,<span class="number">32</span>,<span class="number">29</span>,<span class="number">116</span>,-<span class="number">47</span>,<span class="number">1</span>,<span class="number">115</span>,<span class="number">26</span>,-<span class="number">78</span>,-<span class="number">56</span>,-<span class="number">59</span>,<span class="number">116</span>,-<span class="number">64</span>,<span class="number">91</span>,-<span class="number">9</span>,<span class="number">15</span>,-<span class="number">45</span>,<span class="number">1</span>,<span class="number">85</span>,-<span class="number">78</span>,-<span class="number">92</span>,-<span class="number">82</span>,<span class="number">123</span>,-<span class="number">84</span>,<span class="number">92</span>,<span class="number">86</span>,-<span class="number">68</span>,<span class="number">35</span>]</span><br><span class="line">flag = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(arr)):</span><br><span class="line">	flag.append((v2[i]-<span class="number">71</span>)^arr[i])</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> flag:</span><br><span class="line">	<span class="built_in">print</span>(<span class="built_in">chr</span>(i%<span class="number">128</span>),end = <span class="string">&quot;&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>DACT&amp;{Welc0me-t0-j01n-SU-l0ve-suyug1eg1e}</p>
+<h1 id="crypto"><a href="#crypto" class="headerlink" title="crypto"></a>crypto</h1><h2 id="FlowerCipher"><a href="#FlowerCipher" class="headerlink" title="FlowerCipher"></a>FlowerCipher</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># python</span></span><br><span class="line"><span class="keyword">from</span> md5 <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment">#from secret import flag</span></span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line">flag = <span class="string">b&#x27;flag&#123;%s&#125;&#x27;</span> % md5(<span class="string">&quot;hello&quot;</span>).hexdigest()</span><br><span class="line"><span class="comment"># note that md5 only have characters &#x27;abcdef&#x27; and digits</span></span><br><span class="line"><span class="built_in">print</span>(flag)</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">Flower</span>(<span class="params">x, key</span>):</span><br><span class="line">    flower = random.randint(<span class="number">0</span>, <span class="number">4096</span>)</span><br><span class="line">    <span class="keyword">return</span> x * (key ** <span class="number">3</span> + flower)</span><br><span class="line"></span><br><span class="line">flag = flag[<span class="number">5</span>:-<span class="number">1</span>]</span><br><span class="line">rounds = <span class="built_in">len</span>(flag)</span><br><span class="line"></span><br><span class="line">L, R = <span class="number">1</span>, <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(rounds):</span><br><span class="line">    L, R = R + Flower(L, flag[i]), L</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(L, R)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">L = 15720197268945348388429429351303006925387388927292304717594511259390194100850889852747653387197205392431053069043632340374252629529419776874410817927770922310808632581666181899 </span></span><br><span class="line"><span class="string">R = 139721425176294317602347104909475448503147767726747922243703132013053043430193232376860554749633894589164137720010858254771905261753520854314908256431590570426632742469003</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>就是找规律</p>
+<p>我用的是字符串“hello”的md5值进行测试的，顺带输出了随机数flower的值</p>
+<img src="/2022/03/27/CTF/2022DASCTF/image-20220327235202944.png" class="" title="image-20220327235202944">
+
+<p>截取flag括住的md5字符串，将每位的md5字符的ascii码值的三次方，与随机数flower相加后，x对其进行相乘的轮运算。</p>
+<p>我这边就不分什么L和R了，同一就L吧</p>
+<p>L的值经过运行，会共有33个结果，我只列出5个（别忘了R的初始值为0，得算上）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span>,<span class="number">1</span>,<span class="number">152499</span>,<span class="number">152850662695</span>，<span class="number">21934987200861169</span>……</span><br></pre></td></tr></table></figure>
+
+<p>首先是从1得到111582这个值，</p>
+<p>1 * (ord(“5”) ** 3 + 3622(随机数) ) + 0 &#x3D;&#x3D; 152499</p>
+<p>152499 * (ord(“d”) ** 3 + 2306(随机数) ) + 1 &#x3D;&#x3D; 152850662695</p>
+<p>152850662695 * (ord(“4”) ** 3 + 2898(随机数)) + 152499 &#x3D;&#x3D; 21934987200861169</p>
+<p>……</p>
+<p>有个细节就是关于md5，ascii码的爆破，只有16个值，我们将其的三次方统计出来，然后再带入，就能避免爆破时的重复运算。</p>
+<p>我的代码只有两段，总体来说有以下几个步骤：</p>
+<ol>
+<li>把题目给出的L和R放入第一段代码中爆破，找出与Ln最相近(至少头5位以上相同)的那个数L</li>
+<li>记录L的值，再将Ln和L放到第二段代码中算出（Ln-L）</li>
+<li>颠倒次序，把Rn的值放入Ln，把（Ln-L）放入Rn</li>
+<li>下一轮爆破</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Ln = <span class="number">15720197268945348388429429351303006925387388927292304717594511259390194100850889852747653387197205392431053069043632340374252629529419776874410817927770922310808632581666181899</span> </span><br><span class="line">Rn = <span class="number">139721425176294317602347104909475448503147767726747922243703132013053043430193232376860554749633894589164137720010858254771905261753520854314908256431590570426632742469003</span></span><br><span class="line"></span><br><span class="line">table = [<span class="number">110592</span>, <span class="number">117649</span>, <span class="number">125000</span>, <span class="number">132651</span>, <span class="number">140608</span>, <span class="number">148877</span>, <span class="number">157464</span>, <span class="number">166375</span>, <span class="number">175616</span>, <span class="number">185193</span>, <span class="number">912673</span>, <span class="number">941192</span>, <span class="number">970299</span>, <span class="number">1000000</span>, <span class="number">1030301</span>, <span class="number">1061208</span>]</span><br><span class="line">arr = <span class="string">&quot;0123456789abcdef&quot;</span></span><br><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(table)):</span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4097</span>):</span><br><span class="line">		s = Rn * (table[k]+i)</span><br><span class="line">		<span class="built_in">print</span>(s,i,k)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">L = XX</span><br><span class="line">L2 = XX</span><br><span class="line"><span class="built_in">print</span>(L1-L2)</span><br></pre></td></tr></table></figure>
+
+<p>以下是我记录的结果，也顺便把flower随机数给求出来了</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#   15720197268010049967757675120469992186537658494704135479561283085920610969374470767952957875436059114121446299016141673102641832905150384839824642839374686669270876487929996533 1919 0</span></span><br><span class="line"><span class="comment"># 	139721425168891349281451572792544680133048837962069857150100615261867817820225178415462359077837226554096748311704122075309731667870724937930248453782400769574967523270642 510 5</span></span><br><span class="line"><span class="comment">#   935298420630262423185150206646668885399191421990835568861492588788973905537009439370462836218449045234881355649430474024746318871954304126501288629400235458740127101 1341 2</span></span><br><span class="line"><span class="comment">#   7402968320531989835670241249457421938283688514175514626293968883156349035945739737904361257497353379629413158206906713676778417021296445905576431695996715641300 2804 8</span></span><br><span class="line"><span class="comment">#   41491807644826481333056571242042987763162606518088912744473506551739700646996757137623352025000231061906119571673189237339386631862081048474757647974486052 3540 0</span></span><br><span class="line"><span class="comment">#	363542281257405436738062356377499261443865043865819271011660681964779781594783648490405407084091956921600660152274552384722839809777207315962395724219 2014 1</span></span><br><span class="line"><span class="comment">#	3038050869988262429655157757050855487684960921705258160397820501320186928458237610126810889102968352283119686135758844661757227858541497892329978 2910 12</span></span><br><span class="line"><span class="comment">#	3121683903427741450531538690298173116055843159376206844245035131620220173908400102678527763657957532736559255674205238569272853603347684360 1583 9</span></span><br><span class="line"><span class="comment">#	16713517279651699427416237029968408926588205411468552569137856325095699110951088692439450366166993887875519154383257203446616180663090 1553 11</span></span><br><span class="line"><span class="comment">#	17728566345759946219419043899895158573935956749824781372783616735461960720379964461326804126448830581009804233228809205290722005 677 11</span></span><br><span class="line"><span class="comment">#	18822751726345982203536113956628287336349341818556411576055283361468981935791538263907057292686428250726627439749346855794 2623 12</span></span><br><span class="line"><span class="comment">#	19346619488846194559561002486970415604137588112233495035918509580946584549555534897772973203882140940841422311351882 2182 13</span></span><br><span class="line"><span class="comment">#	19304497076062675076996611100676013925228610670849154654479793346504090311378449485002713890157750241704060905 899 13</span></span><br><span class="line"><span class="comment">#	19287157920117788313343479701196130159642868618931955510796952126270844726755147453674899267075236180510 536 1</span></span><br><span class="line"><span class="comment">#	163194634847106630304640801569246968479812515049711601031768905677844430993957504882527310932658385 1206 7</span></span><br><span class="line"><span class="comment">#	973825402916378169077745443044681608822639561953870686694312206745163458824521668260965989574 4070 6</span></span><br><span class="line"><span class="comment">#	6028609474854126199515278609291926142756502224800248232787857670670545743680405264374000 3699 14</span></span><br><span class="line"><span class="comment">#	5830376667896185002654420350650782884309207250500677414733204240590442735335736536 2360 8</span></span><br><span class="line"><span class="comment">#	32759342090244825649040695774567282547692783729977476494686456263546407645500 3129 3</span></span><br><span class="line"><span class="comment">#	241267801517462008306176189488648150382335625618648940556475948111371047 3927 13</span></span><br><span class="line"><span class="comment">#	240324048965397603464474529360761469453780103694211768036773812736 2623 6</span></span><br><span class="line"><span class="comment">#	1501209023616087621185251887472189877470525030158230860929775 2967 2</span></span><br><span class="line"><span class="comment">#	11731219952133874353623065586006692045981599038444975155 427 15</span></span><br><span class="line"><span class="comment">#	11050144307659161397338047811281198461104120235200 259 14</span></span><br><span class="line"><span class="comment">#	10722465753785810850086192105446537156391682 330 6</span></span><br><span class="line"><span class="comment">#	67952303343060595219909806911058324892 2545 6</span></span><br><span class="line"><span class="comment">#	424678007753497956261063331068660 3868 11</span></span><br><span class="line"><span class="comment">#	449366185988738790777629544 398 7</span></span><br><span class="line"><span class="comment">#	2694478038806093981253 217 0</span></span><br><span class="line"><span class="comment">#	24316418691544200 1240 8</span></span><br><span class="line"><span class="comment">#	137492755074 1021 14</span></span><br><span class="line"><span class="comment">#	133317 666 3</span></span><br></pre></td></tr></table></figure>
+
+<p>flag就出来了（反正是本队的flag）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">arr = <span class="string">&quot;0123456789abcdef&quot;</span></span><br><span class="line">flag = [<span class="number">3</span>,<span class="number">14</span>,<span class="number">8</span>,<span class="number">0</span>,<span class="number">7</span>,<span class="number">11</span>,<span class="number">6</span>,<span class="number">6</span>,<span class="number">14</span>,<span class="number">15</span>,<span class="number">2</span>,<span class="number">6</span>,<span class="number">13</span>,<span class="number">3</span>,<span class="number">8</span>,<span class="number">14</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">1</span>,<span class="number">13</span>,<span class="number">13</span>,<span class="number">12</span>,<span class="number">11</span>,<span class="number">11</span>,<span class="number">9</span>,<span class="number">12</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">8</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">0</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> flag:</span><br><span class="line">	<span class="built_in">print</span>(arr[i],end = <span class="string">&quot;&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>DASCTF{3e807b66ef26d38e671ddcbb9c108250}</p>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/CTF%E8%B5%9B%E5%90%8E%E5%A4%8D%E7%8E%B0/">CTF赛后复现</a></div><div class="post_share"><div class="social-share" data-image="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/03/22/BUU_crypto/rsa%E5%90%88%E9%9B%86/"><img class="next-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">rsa合集</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2022/02/16/CTF/2022-DefCamp-CTF/" title="2022_DefCamp_CTF"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-16</div><div class="title">2022_DefCamp_CTF</div></div></a></div><div><a href="/2022/02/14/CTF/2022V&NCTF/" title="2022V&NCTF--赛后复现"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-14</div><div class="title">2022V&NCTF--赛后复现</div></div></a></div><div><a href="/2022/02/07/CTF/TheCyberGrabs_reverse/" title="TheCyberGrabs"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-07</div><div class="title">TheCyberGrabs</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/ke1os.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">ke1os</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">13</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">9</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#reverse"><span class="toc-number">1.</span> <span class="toc-text">reverse</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#easyre"><span class="toc-number">1.1.</span> <span class="toc-text">easyre</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ASpack%E8%84%B1%E5%A3%B3"><span class="toc-number">1.1.1.</span> <span class="toc-text">ASpack脱壳</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E8%A7%A3"><span class="toc-number">1.1.2.</span> <span class="toc-text">题解</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#crypto"><span class="toc-number">2.</span> <span class="toc-text">crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#FlowerCipher"><span class="toc-number">2.1.</span> <span class="toc-text">FlowerCipher</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/03/27/CTF/2022DASCTF/" title="2022DASCTF"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2022DASCTF"/></a><div class="content"><a class="title" href="/2022/03/27/CTF/2022DASCTF/" title="2022DASCTF">2022DASCTF</a><time datetime="2022-03-27T12:59:10.000Z" title="Created 2022-03-27 20:59:10">2022-03-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/22/BUU_crypto/rsa%E5%90%88%E9%9B%86/" title="rsa合集"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="rsa合集"/></a><div class="content"><a class="title" href="/2022/03/22/BUU_crypto/rsa%E5%90%88%E9%9B%86/" title="rsa合集">rsa合集</a><time datetime="2022-03-22T13:01:37.000Z" title="Created 2022-03-22 21:01:37">2022-03-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/18/bugku/bugku-crypto/" title="bugku-crypto"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="bugku-crypto"/></a><div class="content"><a class="title" href="/2022/03/18/bugku/bugku-crypto/" title="bugku-crypto">bugku-crypto</a><time datetime="2022-03-18T14:13:32.000Z" title="Created 2022-03-18 22:13:32">2022-03-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/01/%E7%AE%97%E6%B3%95/leetcode-%E6%AF%8F%E6%97%A5%E7%BB%83%E4%B9%A0/" title="leetcode_每日练习"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="leetcode_每日练习"/></a><div class="content"><a class="title" href="/2022/03/01/%E7%AE%97%E6%B3%95/leetcode-%E6%AF%8F%E6%97%A5%E7%BB%83%E4%B9%A0/" title="leetcode_每日练习">leetcode_每日练习</a><time datetime="2022-03-01T14:39:32.000Z" title="Created 2022-03-01 22:39:32">2022-03-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/01/BUU_crypto/BUU-crypto/" title="BUU-crypto"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="BUU-crypto"/></a><div class="content"><a class="title" href="/2022/03/01/BUU_crypto/BUU-crypto/" title="BUU-crypto">BUU-crypto</a><time datetime="2022-03-01T01:40:45.000Z" title="Created 2022-03-01 09:40:45">2022-03-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By ke1os</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
