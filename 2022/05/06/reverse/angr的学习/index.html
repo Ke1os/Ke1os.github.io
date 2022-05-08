@@ -1,0 +1,379 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>angr的学习 | ke1os' blog</title><meta name="keywords" content="reverse"><meta name="author" content="ke1os"><meta name="copyright" content="ke1os"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="符号执行基本概念符号执行 （Symbolic Execution）是一种程序分析技术。其可以通过分析程序来得到让特定代码区域执行的输入。 使用符号执行分析一个程序时，该程序会使用符号值作为输入，而非一般执行程序时使用的具体值。在达到目标代码时，分析器可以得到相应的路径约束，然后通过约束求解器来得到可以触发目标代码的具体值。 符号执行技术是一种白盒的静态分析技术。即，分析程序可能的输入需要能够获">
+<meta property="og:type" content="article">
+<meta property="og:title" content="angr的学习">
+<meta property="og:url" content="http://ke1os.top/2022/05/06/reverse/angr%E7%9A%84%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="ke1os&#39; blog">
+<meta property="og:description" content="符号执行基本概念符号执行 （Symbolic Execution）是一种程序分析技术。其可以通过分析程序来得到让特定代码区域执行的输入。 使用符号执行分析一个程序时，该程序会使用符号值作为输入，而非一般执行程序时使用的具体值。在达到目标代码时，分析器可以得到相应的路径约束，然后通过约束求解器来得到可以触发目标代码的具体值。 符号执行技术是一种白盒的静态分析技术。即，分析程序可能的输入需要能够获">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+<meta property="article:published_time" content="2022-05-06T02:31:19.000Z">
+<meta property="article:modified_time" content="2022-05-08T01:48:18.596Z">
+<meta property="article:author" content="ke1os">
+<meta property="article:tag" content="reverse">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><link rel="shortcut icon" href="/img/ke1os.jpg"><link rel="canonical" href="http://ke1os.top/2022/05/06/reverse/angr%E7%9A%84%E5%AD%A6%E4%B9%A0/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'angr的学习',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-05-08 09:48:18'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.1.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/ke1os.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">24</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">13</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">ke1os' blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">angr的学习</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-05-06T02:31:19.000Z" title="Created 2022-05-06 10:31:19">2022-05-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-05-08T01:48:18.596Z" title="Updated 2022-05-08 09:48:18">2022-05-08</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="angr的学习"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><span id="more"></span>
+
+<h1 id="符号执行"><a href="#符号执行" class="headerlink" title="符号执行"></a>符号执行</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p><strong>符号执行</strong> （Symbolic Execution）是一种程序分析技术。其可以通过分析程序来<strong>得到让特定代码区域执行的输入</strong>。</p>
+<p>使用符号执行分析一个程序时，该程序会使用符号值作为输入，而非一般执行程序时使用的具体值。在达到目标代码时，分析器可以得到相应的路径约束，然后通过约束求解器来得到可以触发目标代码的具体值。</p>
+<p>符号执行技术是一种<strong>白盒</strong>的静态分析技术。即，分析程序可能的输入<strong>需要能够获取到目标源代码的支持</strong>。同时，它是静态的，因为并没有实际的执行程序本身，而是分析程序的执行路径。</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-264878.htm">详细移步看雪</a></p>
+<h2 id="python虚拟环境"><a href="#python虚拟环境" class="headerlink" title="python虚拟环境"></a>python虚拟环境</h2><p>在windows和linux中我都装的是anaconda来配置python虚拟环境。建议搭配pycharm使用</p>
+<p>常用命令：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一个名为py38的python3.8版本的虚拟环境：</span></span><br><span class="line">conda create -n py38 python=<span class="number">3.8</span>  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动环境</span></span><br><span class="line">conda activate py38</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看已经安装的包</span></span><br><span class="line">pip <span class="built_in">list</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 退出环境</span></span><br><span class="line">conda deactivate py38</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除虚拟环境中的包</span></span><br><span class="line">conda remove --name py38  package_name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除环境 py38</span></span><br><span class="line">conda remove -n py38 --<span class="built_in">all</span></span><br></pre></td></tr></table></figure>
+
+<p>用pycharm使用虚拟环境或者自带环境来新建项目，只需要找到其Python的解释器即可</p>
+<p>举例我用anconda创建了一个py27的虚拟环境，在anaconda3下的envs目录下就能找到py27虚拟环境目录，在py27目录下即可看到python.exe</p>
+<img src="/2022/05/06/reverse/angr%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20220506110444168.png" class="" title="image-20220506110444168">
+
+<p>在pycharm中创建py2.7虚拟环境</p>
+<img src="/2022/05/06/reverse/angr%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20220506110832517.png" class="" title="image-20220506110832517">
+
+<p>B站有很多关于anconda虚拟环境的教程，可以去看看~</p>
+<p>在kali中安装anconda的时候，遇到了两个问题</p>
+<h3 id="conda命令未显示的问题"><a href="#conda命令未显示的问题" class="headerlink" title="conda命令未显示的问题"></a>conda命令未显示的问题</h3><p>在大佬aep的帮助下，得知环境变量添加错误，一般网上都把path添加在~&#x2F;.bash.rc中，而我的shell是zsh环境，所以应该把path添加在 ~&#x2F;.zshrc中</p>
+<img src="/2022/05/06/reverse/angr%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20220506104316561.png" class="" title="image-20220506104316561">
+
+<h3 id="打开终端自动进入conda环境"><a href="#打开终端自动进入conda环境" class="headerlink" title="打开终端自动进入conda环境"></a>打开终端自动进入conda环境</h3><img src="/2022/05/06/reverse/angr%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20220506104459466.png" class="" title="image-20220506104459466">
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim .condarc</span><br></pre></td></tr></table></figure>
+
+<p>在文件中键入：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">auto_activate_base: false</span><br></pre></td></tr></table></figure>
+
+<h1 id="各种例题"><a href="#各种例题" class="headerlink" title="各种例题"></a>各种例题</h1><p>来自《从0到1:CTFer的成长之路》</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/angr/angr-doc/tree/master/examples">例题下载链接</a></p>
+<h2 id="defcamp-r100"><a href="#defcamp-r100" class="headerlink" title="defcamp_r100"></a>defcamp_r100</h2><p>首先查看一下保护，没有开PIE</p>
+<img src="/2022/05/06/reverse/angr%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20220506113703110.png" class="" title="image-20220506113703110">
+
+<p>用ida分析，记录一下判断成功的地址：0x400844</p>
+<img src="/2022/05/06/reverse/angr%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20220506112049415.png" class="" title="image-20220506112049415">
+
+<p>失败的地址： 0x400855</p>
+<img src="/2022/05/06/reverse/angr%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20220506112145021.png" class="" title="image-20220506112145021">
+
+<p>官方脚本：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> angr</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#  auto_load_libs=False,阻止angr自动载入并分析依赖的库函数</span></span><br><span class="line">    p = angr.Project(<span class="string">&quot;r100&quot;</span>, auto_load_libs=<span class="literal">False</span>)</span><br><span class="line">    </span><br><span class="line">    simgr = p.factory.simulation_manager(p.factory.full_init_state())</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 需要寻找和需要规避的地址，传入的可以是数组</span></span><br><span class="line">    simgr.explore(find=<span class="number">0x400844</span>, avoid=<span class="number">0x400855</span>)</span><br><span class="line">	</span><br><span class="line">    <span class="comment"># fund是一个表，found表示其中一条通往目标地址的路径,若找到，其类型为SimState，代表程序此时的一个状态</span></span><br><span class="line">    <span class="comment"># POSIX(Portable Operating System Interface):各种输入数据，posix.dump(0)获取标准输入(标准输入的文件句柄号为0)</span></span><br><span class="line">    <span class="keyword">return</span> simgr.found[<span class="number">0</span>].posix.dumps(<span class="number">0</span>).strip(<span class="string">b&#x27;\0\n&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">test</span>():</span><br><span class="line">    <span class="keyword">assert</span> main().startswith(<span class="string">b&#x27;Code_Talkers&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="built_in">print</span>(main())</span><br></pre></td></tr></table></figure>
+
+<img src="/2022/05/06/reverse/angr%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20220506112718425.png" class="" title="image-20220506112718425">
+
+<p>官方给出的脚本跑了3秒多</p>
+<h3 id="hook函数改进方法"><a href="#hook函数改进方法" class="headerlink" title="hook函数改进方法"></a>hook函数改进方法</h3><p>以下是nullbook书中给出的改进算法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> angr</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="comment"># 继承angr.SimProcedure类，并重写其中的run方法</span></span><br><span class="line"><span class="comment"># 通过验证函数的循环次数可以确定flag的长度为12,所以只需要让fgets函数传入12个字节的输入即可</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">my_fgets</span>(angr.SimProcedure):</span><br><span class="line"></span><br><span class="line">    <span class="comment"># s是rdi寄存器指向的内存地址，用来存放输入数据</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">run</span>(<span class="params">self,s,num,f</span>):</span><br><span class="line">        simfd = self.state.posix.get_fd(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># read_data，存放12个输入字符即可</span></span><br><span class="line">        data,real_size = simfd.read_data(<span class="number">12</span>)</span><br><span class="line">        self.state.memory.store(s,data)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">12</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 阻止angr自动载入并分析依赖的库函数</span></span><br><span class="line">    p = angr.Project(<span class="string">&quot;r100&quot;</span>,auto_load_libs=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># hook printf函数，replace = True表示已经代替了之前的hook</span></span><br><span class="line">    p.hook_symbol(<span class="string">&#x27;printf&#x27;</span>,angr.SIM_PROCEDURES[<span class="string">&#x27;stubs&#x27;</span>][<span class="string">&#x27;ReturnUnconstrained&#x27;</span>](),replace=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># hook fgets函数</span></span><br><span class="line">    p.hook_symbol(<span class="string">&#x27;fgets&#x27;</span>,my_fgets(),replace=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># blank_state 手动指定程序开始地址 addr是main函数的地址</span></span><br><span class="line">    state = p.factory.blank_state(addr = <span class="number">0x4007e8</span>)</span><br><span class="line"></span><br><span class="line">    simgr = p.factory.simulation_manager(state)</span><br><span class="line">    </span><br><span class="line">    simgr.explore(find=<span class="number">0x400844</span>,avoid=<span class="number">0x400855</span>)</span><br><span class="line">   </span><br><span class="line">    <span class="keyword">return</span> simgr.found[<span class="number">0</span>].posix.dumps(<span class="number">0</span>).strip(<span class="string">b&#x27;\0\n&#x27;</span>) </span><br><span class="line">                                                        </span><br><span class="line">                                                        </span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    time_start = time.time()</span><br><span class="line">    <span class="built_in">print</span>(main())</span><br><span class="line">    time_end = time.time()</span><br><span class="line">    <span class="built_in">print</span>(time_end - time_start)</span><br></pre></td></tr></table></figure>
+
+<p>改进后的方法只用了1秒多！！</p>
+<img src="/2022/05/06/reverse/angr%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20220506113302282.png" class="" title="image-20220506113302282">
+
+
+
+<h2 id="baby-re（DEFCON-2016-quals）"><a href="#baby-re（DEFCON-2016-quals）" class="headerlink" title="baby-re（DEFCON 2016 quals）"></a>baby-re（DEFCON 2016 quals）</h2><img src="/2022/05/06/reverse/angr%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20220506113623722.png" class="" title="image-20220506113623722">
+
+<p>用ida分析，题目中是调用了12次scanf函数，将其存入到一个整形数组中，最后进入CheckSolution函数，CheckSolution非常巨大……</p>
+<img src="/2022/05/06/reverse/angr%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20220506114024283.png" class="" title="image-20220506114024283">
+
+<img src="/2022/05/06/reverse/angr%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20220506155003735.png" class="" title="image-20220506155003735">
+
+<p>我们先来使用上一题种使用到的hook改进方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 阻止angr自动载入并分析依赖的库函数</span></span><br><span class="line">p = angr.Project(<span class="string">&quot;./baby-re&quot;</span>,auto_load_libs=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+
+<p>hook scanf函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">my_scanf</span>(angr.SimProcedure):</span><br><span class="line"></span><br><span class="line">    <span class="comment"># s是rdi寄存器指向的内存地址，用来存放输入数据</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">run</span>(<span class="params">self,fmt,des</span>):</span><br><span class="line">        simfd = self.state.posix.get_fd(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># read_data，存放4个字节即可</span></span><br><span class="line">        data,real_size = simfd.read_data(<span class="number">4</span>)</span><br><span class="line">        self.state.memory.store(des,data)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">p.hook_symbol(<span class="string">&#x27;__isoc99_scanf&#x27;</span>, my_scanf(), replace=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<p>遇到fflush和printf函数，就直接return</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">p.hook_symbol(<span class="string">&#x27;printf&#x27;</span>, angr.SIM_PROCEDURES[<span class="string">&#x27;stubs&#x27;</span>][<span class="string">&#x27;ReturnUnconstrained&#x27;</span>](), replace=<span class="literal">True</span>)</span><br><span class="line">p.hook_symbol(<span class="string">&#x27;fflush&#x27;</span>, angr.SIM_PROCEDURES[<span class="string">&#x27;stubs&#x27;</span>][<span class="string">&#x27;ReturnUnconstrained&#x27;</span>](), replace=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>确定起始地址为main函数地址</p>
+<img src="/2022/05/06/reverse/angr%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20220506155319187.png" class="" title="image-20220506155319187">
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">state = p.factory.blank_state(addr = <span class="number">0x4025E7</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>确定寻找地址：</p>
+<img src="/2022/05/06/reverse/angr%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20220506154849145.png" class="" title="image-20220506154849145">
+
+<img src="/2022/05/06/reverse/angr%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20220506154838362.png" class="" title="image-20220506154838362">
+
+<p>规避地址：</p>
+<img src="/2022/05/06/reverse/angr%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20220506154929668.png" class="" title="image-20220506154929668">
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">simgr.explore(find=<span class="number">0x4028E9</span>,avoid=<span class="number">0x402941</span>)</span><br></pre></td></tr></table></figure>
+
+<p>完整代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> angr</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">my_scanf</span>(angr.SimProcedure):</span><br><span class="line"></span><br><span class="line">    <span class="comment"># s是rdi寄存器指向的内存地址，用来存放输入数据</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">run</span>(<span class="params">self,fmt,des</span>):</span><br><span class="line">        simfd = self.state.posix.get_fd(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># read_data，存放4个字节即可</span></span><br><span class="line">        data,real_size = simfd.read_data(<span class="number">4</span>)</span><br><span class="line">        self.state.memory.store(des,data)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    <span class="comment"># 阻止angr自动载入并分析依赖的库函数</span></span><br><span class="line">    p = angr.Project(<span class="string">&quot;./baby-re&quot;</span>,auto_load_libs=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">    state = p.factory.blank_state(addr = <span class="number">0x4025E7</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 遇到printf函数和fflush函数，就直接return</span></span><br><span class="line">    p.hook_symbol(<span class="string">&#x27;printf&#x27;</span>, angr.SIM_PROCEDURES[<span class="string">&#x27;stubs&#x27;</span>][<span class="string">&#x27;ReturnUnconstrained&#x27;</span>](), replace=<span class="literal">True</span>)</span><br><span class="line">    p.hook_symbol(<span class="string">&#x27;fflush&#x27;</span>, angr.SIM_PROCEDURES[<span class="string">&#x27;stubs&#x27;</span>][<span class="string">&#x27;ReturnUnconstrained&#x27;</span>](), replace=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    p.hook_symbol(<span class="string">&#x27;__isoc99_scanf&#x27;</span>, my_scanf(), replace=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    simgr = p.factory.simulation_manager(state)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    simgr.explore(find=<span class="number">0x4028E9</span>,avoid=<span class="number">0x402941</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> simgr.found[<span class="number">0</span>].posix.dumps(<span class="number">0</span>)                </span><br><span class="line">                                                        </span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    time_start = time.time()</span><br><span class="line">    <span class="built_in">print</span>(main())</span><br><span class="line">    time_end = time.time()</span><br><span class="line">    <span class="built_in">print</span>(time_end - time_start)</span><br></pre></td></tr></table></figure>
+
+<p>这种方法跑出来花了100多秒</p>
+<img src="/2022/05/06/reverse/angr%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20220506155723281.png" class="" title="image-20220506155723281">
+
+
+
+<p>如何改进？</p>
+<h3 id="不运行时检查方法"><a href="#不运行时检查方法" class="headerlink" title="不运行时检查方法"></a>不运行时检查方法</h3><p>在代码中加入</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">simgr.one_active.options.add(angr.options.LAZY_SOLVES)</span><br></pre></td></tr></table></figure>
+
+<img src="/2022/05/06/reverse/angr%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20220506160616939.png" class="" title="image-20220506160616939">
+
+<p>速度提升是质的飞跃，只花了12秒！！</p>
+<img src="/2022/05/06/reverse/angr%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20220506160653888.png" class="" title="image-20220506160653888">
+
+
+
+<p>能否再提升效率呢？</p>
+<p>scanf函数无法简单推断输入长度，所以有时候需要用claripy函数手动构造收入</p>
+<h3 id="导入claripy包来求解"><a href="#导入claripy包来求解" class="headerlink" title="导入claripy包来求解"></a>导入claripy包来求解</h3><p>完全可以把claripy当作z3来用，Claripy.BVS()可以直接创建符号变量，参数一为变量名，参数二为数据宽度（位数），</p>
+<p>我们可以查看官方的代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># let&#x27;s provide the exact variables received through the scanf so we don&#x27;t have to worry about parsing stdin into a bunch of ints.</span></span><br><span class="line">flag_chars = [claripy.BVS(<span class="string">&#x27;flag_%d&#x27;</span> % i, <span class="number">32</span>) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">13</span>)]</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">my_scanf</span>(angr.SimProcedure):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">run</span>(<span class="params">self, fmt, ptr</span>): <span class="comment"># pylint: disable=arguments-differ,unused-argument</span></span><br><span class="line">        self.state.mem[ptr].dword = flag_chars[self.state.<span class="built_in">globals</span>[<span class="string">&#x27;scanf_count&#x27;</span>]]</span><br><span class="line">        self.state.<span class="built_in">globals</span>[<span class="string">&#x27;scanf_count&#x27;</span>] += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">proj.hook_symbol(<span class="string">&#x27;__isoc99_scanf&#x27;</span>, my_scanf(), replace=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<p>我们可以通过以上的方式来创建用户的输入</p>
+<p>但是这样的方式，我们不能再通过Dump标准输入来获得正确的输入</p>
+<p>看看<a target="_blank" rel="noopener" href="https://github.com/angr/angr-doc/blob/master/examples/defcon2016quals_baby-re/solve.py">官方文档</a>是怎么处理的：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># evaluate each of the flag chars against the constraints on the found state to construct the flag</span></span><br><span class="line">flag = <span class="string">&#x27;&#x27;</span>.join(<span class="built_in">chr</span>(sm.one_found.solver.<span class="built_in">eval</span>(c)) <span class="keyword">for</span> c <span class="keyword">in</span> flag_chars)</span><br><span class="line"><span class="keyword">return</span> flag</span><br></pre></td></tr></table></figure>
+
+<p>这边贴上官方代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python2</span></span><br><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> print_function</span><br><span class="line"></span><br><span class="line"><span class="comment"># Authors: David Manouchehri &lt;manouchehri@protonmail.com&gt;</span></span><br><span class="line"><span class="comment">#          P1kachu &lt;p1kachu@lse.epita.fr&gt;</span></span><br><span class="line"><span class="comment">#          Audrey Dutcher &lt;audrey@rhelmot.io&gt;</span></span><br><span class="line"><span class="comment"># DEFCON CTF Qualifier 2016</span></span><br><span class="line"><span class="comment"># Challenge: baby-re</span></span><br><span class="line"><span class="comment"># Write-up: http://hack.carleton.team/2016/05/21/defcon-ctf-qualifier-2016-baby-re/</span></span><br><span class="line"><span class="comment"># Runtime: ~15 seconds (thanks lazy solves!)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> angr</span><br><span class="line"><span class="keyword">import</span> claripy</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    proj = angr.Project(<span class="string">&#x27;./baby-re&#x27;</span>, auto_load_libs=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># let&#x27;s provide the exact variables received through the scanf so we don&#x27;t have to worry about parsing stdin into a bunch of ints.</span></span><br><span class="line">    flag_chars = [claripy.BVS(<span class="string">&#x27;flag_%d&#x27;</span> % i, <span class="number">32</span>) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">13</span>)]</span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">my_scanf</span>(angr.SimProcedure):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">run</span>(<span class="params">self, fmt, ptr</span>): <span class="comment"># pylint: disable=arguments-differ,unused-argument</span></span><br><span class="line">            self.state.mem[ptr].dword = flag_chars[self.state.<span class="built_in">globals</span>[<span class="string">&#x27;scanf_count&#x27;</span>]]</span><br><span class="line">            self.state.<span class="built_in">globals</span>[<span class="string">&#x27;scanf_count&#x27;</span>] += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    proj.hook_symbol(<span class="string">&#x27;__isoc99_scanf&#x27;</span>, my_scanf(), replace=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    sm = proj.factory.simulation_manager()</span><br><span class="line">    sm.one_active.options.add(angr.options.LAZY_SOLVES)</span><br><span class="line">    sm.one_active.<span class="built_in">globals</span>[<span class="string">&#x27;scanf_count&#x27;</span>] = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># search for just before the printf(&quot;%c%c...&quot;)</span></span><br><span class="line">    <span class="comment"># If we get to 0x402941, &quot;Wrong&quot; is going to be printed out, so definitely avoid that.</span></span><br><span class="line">    sm.explore(find=<span class="number">0x4028E9</span>, avoid=<span class="number">0x402941</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># evaluate each of the flag chars against the constraints on the found state to construct the flag</span></span><br><span class="line">    flag = <span class="string">&#x27;&#x27;</span>.join(<span class="built_in">chr</span>(sm.one_found.solver.<span class="built_in">eval</span>(c)) <span class="keyword">for</span> c <span class="keyword">in</span> flag_chars)</span><br><span class="line">    <span class="keyword">return</span> flag</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">test</span>():</span><br><span class="line">    <span class="keyword">assert</span> main() == <span class="string">&#x27;Math is hard!&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="built_in">print</span>(main())</span><br></pre></td></tr></table></figure>
+
+<p>惊呆我一整年，只用了9秒……</p>
+<img src="/2022/05/06/reverse/angr%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20220506162807306.png" class="" title="image-20220506162807306">
+
+
+
+<p>正想如何开了pie保护会怎样，没想到这样的例题就来了</p>
+<h2 id="sakura-Hitcon-2017"><a href="#sakura-Hitcon-2017" class="headerlink" title="sakura(Hitcon 2017)"></a><strong>sakura(Hitcon 2017)</strong></h2><p>在这一题中，开了pie保护</p>
+<img src="/2022/05/06/reverse/angr%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20220506163411373.png" class="" title="image-20220506163411373">
+
+<img src="/2022/05/06/reverse/angr%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20220506164006020.png" class="" title="image-20220506164006020">
+
+<p>这个sub_850函数要把我的ida干翻了……</p>
+<img src="/2022/05/06/reverse/angr%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20220506163939122.png" class="" title="image-20220506163939122">
+
+<p>放大sub_850函数流程图，下面有很多类似的结构，都是给rbp+var_1E49赋值0的操作，只要是这种操作，都需要去规避，那我们就需要在程序运行时，将这些地址都添加到一个列表中，所以需要用到idc对其进行提取。</p>
+<img src="/2022/05/06/reverse/angr%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20220506164859454.png" class="" title="image-20220506164859454">
+
+<p>sub_850函数开始地址：</p>
+<img src="/2022/05/06/reverse/angr%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20220506165841798.png" class="" title="image-20220506165841798">
+
+<p>sub_850函数结束地址：</p>
+<img src="/2022/05/06/reverse/angr%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20220506170041205.png" class="" title="image-20220506170041205">
+
+<p>shift+F2，开启idc，选择idapython，在其中键入：</p>
+<img src="/2022/05/06/reverse/angr%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20220506171455042.png" class="" title="image-20220506171455042">
+
+<p>nullbook中是这样尝试的，但是我没有在idc库中找到NextHead()这个API</p>
+<p>查看<a target="_blank" rel="noopener" href="https://github.com/angr/angr-doc/blob/master/examples/hitcon2017_sakura/solve.py">官方文档</a>：</p>
+<img src="/2022/05/06/reverse/angr%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20220506171628355.png" class="" title="image-20220506171628355">
+
+<p>也就是用二进制方式读取数据，和nullbook中描述的类似</p>
+<img src="/2022/05/06/reverse/angr%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20220506172319415.png" class="" title="image-20220506172319415">
+
+<p>需要注意的是找到汇编指令的硬编码，用b’\xc6\x85\xB7\xE1\xFF\xFF\x00’代替即可</p>
+<img src="/2022/05/06/reverse/angr%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20220506175024934.png" class="" title="image-20220506175024934">
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">simgr.explore(find = (<span class="number">0x110CA</span>+<span class="number">0x400000</span>),avoid = avoids)</span><br></pre></td></tr></table></figure>
+
+<p>以下是总结nullbook和官方文档的脚本：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python2</span></span><br><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> print_function</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">import</span> angr</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    e = <span class="built_in">open</span>(<span class="string">&quot;./sakura&quot;</span>,<span class="string">&#x27;rb&#x27;</span>).read()</span><br><span class="line"></span><br><span class="line">    avoids = []</span><br><span class="line">    index = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        index = e.find(<span class="string">b&#x27;\xc6\x85\xB7\xE1\xFF\xFF\x00&#x27;</span>,index+<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">if</span> index == -<span class="number">1</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        addr = <span class="number">0x400000</span> + index</span><br><span class="line">        avoids.append(addr)</span><br><span class="line"></span><br><span class="line">    avoids.append(<span class="number">0x110EC</span>+<span class="number">0x400000</span>)  <span class="comment"># 没有成功输出flag的位置</span></span><br><span class="line"></span><br><span class="line">    proj = angr.Project(<span class="string">&#x27;./sakura&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    state = proj.factory.entry_state()</span><br><span class="line"></span><br><span class="line">    simgr = proj.factory.simulation_manager(state)</span><br><span class="line"></span><br><span class="line">    simgr.one_active.options.add(angr.options.LAZY_SOLVES)</span><br><span class="line"></span><br><span class="line">    simgr.explore(find = (<span class="number">0x110CA</span>+<span class="number">0x400000</span>),avoid = avoids)</span><br><span class="line"></span><br><span class="line">    found = simgr.one_found</span><br><span class="line">    </span><br><span class="line">    text = found.solver.<span class="built_in">eval</span>(found.memory.load(<span class="number">0x612040</span>,<span class="number">400</span>), cast_to=<span class="built_in">bytes</span>)</span><br><span class="line"></span><br><span class="line">    h = hashlib.sha256(text)</span><br><span class="line">    flag = <span class="string">&#x27;hitcon&#123;&#x27;</span>+h.hexdigest()+<span class="string">&#x27;&#125;&#x27;</span></span><br><span class="line">    <span class="keyword">return</span> flag</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    time_start = time.time()</span><br><span class="line">    <span class="built_in">print</span>(main())</span><br><span class="line">    time_end = time.time()</span><br><span class="line">    <span class="built_in">print</span>(time_end - time_start)</span><br></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<img src="/2022/05/06/reverse/angr%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20220506174253359.png" class="" title="image-20220506174253359">
+
+<p>当然nullbook书中介绍了更好的hook方法，以及跳过读取flag的步骤，将输入直接存放在内存中</p>
+<h2 id="2020虎符-enc-pe文件-x2F-当个函数angr执行"><a href="#2020虎符-enc-pe文件-x2F-当个函数angr执行" class="headerlink" title="2020虎符 enc (pe文件&#x2F;当个函数angr执行)"></a>2020虎符 enc (pe文件&#x2F;当个函数angr执行)</h2><p><img src="/../BUU-reverse/BUU-reverse/image-20220508092835431.png" alt="image-20220508092835431"></p>
+<p>主要的函数就两个，sub_441050和sub_4412A0</p>
+<p><img src="/../BUU-reverse/BUU-reverse/image-20220508093316706.png" alt="image-20220508093316706"></p>
+<p>可以通过特征码或者插件得知sub_441050这个函数是md5加密算法</p>
+<p><img src="/../BUU-reverse/BUU-reverse/image-20220508093336127.png" alt="image-20220508093336127"></p>
+<p>（这边主要想学习一下angr的知识）</p>
+<p>通过大佬的神之动调，我们得知传入的v11的值为794c87696d24d16e7b9e3dddad778c93</p>
+<p>下面sub_4012A0很复杂，这边贴上大佬的代码(orz)，学一下从单个函数开始的angr执行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> angr <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> claripy <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">flag=BVS(<span class="string">&#x27;flag&#x27;</span>,<span class="number">8</span>*<span class="number">16</span>) <span class="comment">#flag的长度16字节 BVS创造输入</span></span><br><span class="line">result=BVV(<span class="string">b&#x27;\xae\xed\x13\x5c\xbd\xd2\xa1\x74\x9c\x4c\x5e\x02\xd3\x28\x9b\x60&#x27;</span>,<span class="number">8</span>*<span class="number">16</span>) <span class="comment">#创建变量</span></span><br><span class="line">disasm=BVV(<span class="string">b&#x27;794c87696d24d16e7b9e3dddad778c93&#x27;</span>,<span class="number">8</span>*<span class="number">32</span>) <span class="comment">#创建变量</span></span><br><span class="line">p=Project(<span class="string">&#x27;task.exe&#x27;</span>,auto_load_libs=<span class="literal">False</span>) <span class="comment">#是否自动载入依赖的库</span></span><br><span class="line">p.hook(<span class="number">0x405128</span>,SIM_PROCEDURES[<span class="string">&#x27;libc&#x27;</span>][<span class="string">&#x27;malloc&#x27;</span>]()) <span class="comment">#hook SIM_PROCEDURES[&#x27;模块名&#x27;][&#x27;库函数名&#x27;]</span></span><br><span class="line">p.hook(<span class="number">0x4035e4</span>,SIM_PROCEDURES[<span class="string">&#x27;libc&#x27;</span>][<span class="string">&#x27;calloc&#x27;</span>]())</span><br><span class="line">st=p.factory.full_init_state(addr=<span class="number">0x40154d</span>,add_options=&#123;</span><br><span class="line">    options.SYMBOLTC_WRITE_ADDRESSES,</span><br><span class="line">options.REGION_MAPPING,options.SYMBOL_FILL_UNCONSTRAINED_REGISTERS&#125;) <span class="comment">#设置引擎</span></span><br><span class="line"></span><br><span class="line">st.memory.store(st.regs.ebp - <span class="number">0x24</span>, flag) <span class="comment">#传入参数</span></span><br><span class="line">st.memory.store(st.regs.ebp - <span class="number">0x54</span>, disasm) <span class="comment">#传入参数</span></span><br><span class="line">sim = p.factory.simgr(st)  <span class="comment">#模拟执行</span></span><br><span class="line">sim.explore(find=<span class="number">0x401558</span>) <span class="comment">#正确的位置</span></span><br><span class="line">f = sim.one_found</span><br><span class="line">f.solver.add(f.memory.load(f.regs.ebp - <span class="number">0x24</span>, <span class="number">16</span>) == result) <span class="comment">#添加约束条件</span></span><br><span class="line"><span class="built_in">print</span>(f.solver.<span class="built_in">eval</span>(flag, cast_to=<span class="built_in">bytes</span>)) <span class="comment">#打印输入</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#只模拟执行4012a0加密函数</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>是构造参数，</li>
+</ol>
+<p>函数加密之后的结果就写入flag.txt.enc中了，所以我们用010查看</p>
+<p><img src="/../BUU-reverse/BUU-reverse/image-20220507225410464.png" alt="image-20220507225410464"></p>
+<p>用claripy.BVV()函数来构造位向量值。一参是值，二参是位数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">result=BVV(<span class="string">b&#x27;\xae\xed\x13\x5c\xbd\xd2\xa1\x74\x9c\x4c\x5e\x02\xd3\x28\x9b\x60&#x27;</span>,<span class="number">8</span>*<span class="number">16</span>) </span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>构造flag值，claripy.BVS()可以直接创建位向量符号，就像z3中的BitVec一样一参为变量名，二参为位数。由上面的步骤，可以知道flag是16个字节的长度</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag=BVS(<span class="string">&#x27;flag&#x27;</span>,<span class="number">8</span>*<span class="number">16</span>) </span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>hook一些没有帮助的函数</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">p.hook(<span class="number">0x405128</span>,SIM_PROCEDURES[<span class="string">&#x27;libc&#x27;</span>][<span class="string">&#x27;malloc&#x27;</span>]()) <span class="comment">#hook SIM_PROCEDURES[&#x27;模块名&#x27;][&#x27;库函数名&#x27;]</span></span><br><span class="line">p.hook(<span class="number">0x4035e4</span>,SIM_PROCEDURES[<span class="string">&#x27;libc&#x27;</span>][<span class="string">&#x27;calloc&#x27;</span>]())</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><p>创建工程</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">st=p.factory.full_init_state(addr=<span class="number">0x40154d</span>,add_options=&#123;</span><br><span class="line">    options.SYMBOLTC_WRITE_ADDRESSES,</span><br><span class="line">options.REGION_MAPPING,options.SYMBOL_FILL_UNCONSTRAINED_REGISTERS&#125;) <span class="comment">#设置引擎</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>函数的参数传递，看ida就很清晰了</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">st.memory.store(st.regs.ebp - <span class="number">0x24</span>, flag) <span class="comment">#传入参数二</span></span><br><span class="line">st.memory.store(st.regs.ebp - <span class="number">0x54</span>, disasm) <span class="comment">#传入参数一</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/../BUU-reverse/BUU-reverse/image-20220507223252977.png" alt="image-20220507223252977"></p>
+<ol start="6">
+<li>模拟执行</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sim = p.factory.simgr(st)  <span class="comment">#模拟执行</span></span><br></pre></td></tr></table></figure>
+
+<ol start="7">
+<li>确定寻找的地方（即下一条语句的开始点）</li>
+</ol>
+<p><img src="/../BUU-reverse/BUU-reverse/image-20220507231226542.png" alt="image-20220507231226542"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sim.explore(find=<span class="number">0x401558</span>) <span class="comment">#正确的位置</span></span><br></pre></td></tr></table></figure>
+
+<ol start="8">
+<li>为出路 f 添加约束条件，结果要与flag.txt.enc文件中的内容一致</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">f = sim.one_found</span><br><span class="line">f.solver.add(f.memory.load(f.regs.ebp - <span class="number">0x24</span>, <span class="number">16</span>) == result) </span><br></pre></td></tr></table></figure>
+
+<p>​    v11经过函数运算之后，值传递给了Buffer<img src="/../BUU-reverse/BUU-reverse/image-20220507231515691.png" alt="image-20220507231515691"></p>
+<ol start="9">
+<li>输出flag</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(f.solver.<span class="built_in">eval</span>(flag, cast_to=<span class="built_in">bytes</span>)) <span class="comment">#打印输入</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/../BUU-reverse/BUU-reverse/image-20220507231713182.png" alt="image-20220507231713182"></p>
+<p>佩服，五体投地……(orz)</p>
+<img src="/2022/05/06/reverse/angr%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20220508094751562.png" class="" title="image-20220508094751562">
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/reverse/">reverse</a></div><div class="post_share"><div class="social-share" data-image="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/05/02/CTF/2022NahamConCTF/"><img class="next-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">2022NahamConCTF</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/ke1os.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">ke1os</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">24</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">13</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%A6%E5%8F%B7%E6%89%A7%E8%A1%8C"><span class="toc-number">1.</span> <span class="toc-text">符号执行</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.</span> <span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="toc-number">1.2.</span> <span class="toc-text">python虚拟环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#conda%E5%91%BD%E4%BB%A4%E6%9C%AA%E6%98%BE%E7%A4%BA%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">1.2.1.</span> <span class="toc-text">conda命令未显示的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%93%E5%BC%80%E7%BB%88%E7%AB%AF%E8%87%AA%E5%8A%A8%E8%BF%9B%E5%85%A5conda%E7%8E%AF%E5%A2%83"><span class="toc-number">1.2.2.</span> <span class="toc-text">打开终端自动进入conda环境</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%84%E7%A7%8D%E4%BE%8B%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">各种例题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#defcamp-r100"><span class="toc-number">2.1.</span> <span class="toc-text">defcamp_r100</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#hook%E5%87%BD%E6%95%B0%E6%94%B9%E8%BF%9B%E6%96%B9%E6%B3%95"><span class="toc-number">2.1.1.</span> <span class="toc-text">hook函数改进方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#baby-re%EF%BC%88DEFCON-2016-quals%EF%BC%89"><span class="toc-number">2.2.</span> <span class="toc-text">baby-re（DEFCON 2016 quals）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E8%BF%90%E8%A1%8C%E6%97%B6%E6%A3%80%E6%9F%A5%E6%96%B9%E6%B3%95"><span class="toc-number">2.2.1.</span> <span class="toc-text">不运行时检查方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5claripy%E5%8C%85%E6%9D%A5%E6%B1%82%E8%A7%A3"><span class="toc-number">2.2.2.</span> <span class="toc-text">导入claripy包来求解</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sakura-Hitcon-2017"><span class="toc-number">2.3.</span> <span class="toc-text">sakura(Hitcon 2017)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2020%E8%99%8E%E7%AC%A6-enc-pe%E6%96%87%E4%BB%B6-x2F-%E5%BD%93%E4%B8%AA%E5%87%BD%E6%95%B0angr%E6%89%A7%E8%A1%8C"><span class="toc-number">2.4.</span> <span class="toc-text">2020虎符 enc (pe文件&#x2F;当个函数angr执行)</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/05/06/reverse/angr%E7%9A%84%E5%AD%A6%E4%B9%A0/" title="angr的学习"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="angr的学习"/></a><div class="content"><a class="title" href="/2022/05/06/reverse/angr%E7%9A%84%E5%AD%A6%E4%B9%A0/" title="angr的学习">angr的学习</a><time datetime="2022-05-06T02:31:19.000Z" title="Created 2022-05-06 10:31:19">2022-05-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/02/CTF/2022NahamConCTF/" title="2022NahamConCTF"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2022NahamConCTF"/></a><div class="content"><a class="title" href="/2022/05/02/CTF/2022NahamConCTF/" title="2022NahamConCTF">2022NahamConCTF</a><time datetime="2022-05-02T03:40:43.000Z" title="Created 2022-05-02 11:40:43">2022-05-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/27/CTF/2022MRCTF/" title="2022MRCTF"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2022MRCTF"/></a><div class="content"><a class="title" href="/2022/04/27/CTF/2022MRCTF/" title="2022MRCTF">2022MRCTF</a><time datetime="2022-04-27T11:44:42.000Z" title="Created 2022-04-27 19:44:42">2022-04-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/27/%E7%AE%97%E6%B3%95/CTF%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93-%E6%9B%B4%E6%96%B0/" title="CTF常见加密算法[更新]"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CTF常见加密算法[更新]"/></a><div class="content"><a class="title" href="/2022/04/27/%E7%AE%97%E6%B3%95/CTF%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93-%E6%9B%B4%E6%96%B0/" title="CTF常见加密算法[更新]">CTF常见加密算法[更新]</a><time datetime="2022-04-27T01:48:44.000Z" title="Created 2022-04-27 09:48:44">2022-04-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/25/CTF/2022%E7%AC%AC%E4%BA%8C%E5%B1%8A%E7%BD%91%E5%88%83%E6%9D%AF%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9B/" title="2022第二届网刃杯网络安全大赛"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2022第二届网刃杯网络安全大赛"/></a><div class="content"><a class="title" href="/2022/04/25/CTF/2022%E7%AC%AC%E4%BA%8C%E5%B1%8A%E7%BD%91%E5%88%83%E6%9D%AF%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9B/" title="2022第二届网刃杯网络安全大赛">2022第二届网刃杯网络安全大赛</a><time datetime="2022-04-25T13:32:31.000Z" title="Created 2022-04-25 21:32:31">2022-04-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By ke1os</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
