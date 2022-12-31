@@ -3,10 +3,10 @@
 <meta property="og:url" content="http://ke1os.top/page/2/index.html">
 <meta property="og:site_name" content="ke1os&#39; blog">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://ke1os.top/img/ke1os.jpg">
+<meta property="og:image" content="http://ke1os.top/img/ke1os.png">
 <meta property="article:author" content="ke1os">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://ke1os.top/img/ke1os.jpg"><link rel="shortcut icon" href="/img/ke1os.jpg"><link rel="canonical" href="http://ke1os.top/page/2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+<meta name="twitter:image" content="http://ke1os.top/img/ke1os.png"><link rel="shortcut icon" href="/img/ke1os.png"><link rel="canonical" href="http://ke1os.top/page/2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
   root: '/',
   algolia: undefined,
   localSearch: undefined,
@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2022-12-31 20:57:10'
+  postUpdate: '2022-12-31 22:46:43'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -137,58 +137,7 @@
       }
     }
     detectApple()
-    })(window)</script><meta name="generator" content="Hexo 6.1.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/ke1os.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">26</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">13</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/img/home.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">ke1os' blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">ke1os' blog</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/05/06/reverse/angr%E7%9A%84%E5%AD%A6%E4%B9%A0/" title="angr的学习">angr的学习</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-05-06T02:31:19.000Z" title="Created 2022-05-06 10:31:19">2022-05-06</time></span></div><div class="content">
-
-符号执行基本概念符号执行 （Symbolic Execution）是一种程序分析技术。其可以通过分析程序来得到让特定代码区域执行的输入。
-使用符号执行分析一个程序时，该程序会使用符号值作为输入，而非一般执行程序时使用的具体值。在达到目标代码时，分析器可以得到相应的路径约束，然后通过约束求解器来得到可以触发目标代码的具体值。
-符号执行技术是一种白盒的静态分析技术。即，分析程序可能的输入需要能够获取到目标源代码的支持。同时，它是静态的，因为并没有实际的执行程序本身，而是分析程序的执行路径。
-详细移步看雪
-python虚拟环境在windows和linux中我都装的是anaconda来配置python虚拟环境。建议搭配pycharm使用
-常用命令：
-1234567891011121314151617# 创建一个名为py38的python3.8版本的虚拟环境：conda create -n py38 python=3.8  # 启动环境conda activate py38# 查看已经安装的包pip list# 退出环境conda deactivate py38# 删除虚拟环境中的包cond ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/05/02/CTF/2022NahamConCTF/" title="2022NahamConCTF">2022NahamConCTF</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-05-02T03:40:43.000Z" title="Created 2022-05-02 11:40:43">2022-05-02</time></span></div><div class="content">
-
-这边只记录一些有意思的题，主要是记录复现题
-unimod1234567891011import randomflag = open(&#x27;flag.txt&#x27;, &#x27;r&#x27;).read()ct = &#x27;&#x27;k = random.randrange(0,0xFFFD)for c in flag:    ct += chr((ord(c) + k) % 0xFFFD)open(&#x27;out&#x27;, &#x27;w&#x27;).write(ct)# out文件# 饇饍饂饈饜餕饆餗餙饅餒餗饂餗餒饃饄餓饆饂餘餓饅餖饇餚餘餒餔餕餕饆餙餕饇餒餒饞飫
-
-我猜测是unnicode编码，找个网站转一下
-
-
-flag第一个字符为”f”，算出k，即可。
-1234567ct = [0x9947,0x994d,0x9942,0x9948,0x995c,0x9915,0x9946,0x9917,0x9919,0x9945,0x9912,0x9917,0x9942,0x9917,0x9912,0x9943,0x9944,0x9913,0x9946,0x9 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/04/27/CTF/2022MRCTF/" title="2022MRCTF">2022MRCTF</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-04-27T11:44:42.000Z" title="Created 2022-04-27 19:44:42">2022-04-27</time></span></div><div class="content">
-
-Reverseold
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/04/27/%E7%AE%97%E6%B3%95/CTF%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93-%E6%9B%B4%E6%96%B0/" title="CTF常见加密算法[更新]">CTF常见加密算法[更新]</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-04-27T01:48:44.000Z" title="Created 2022-04-27 09:48:44">2022-04-27</time></span></div><div class="content">
-
-汇总CTF常见加密算法的解密脚本
-XXtea具体可以查看这篇博客
-C实现：
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354#include &lt;iostream&gt;#include &lt;stdio.h&gt; using namespace std; #include &lt;stdint.h&gt;#define DELTA 0x9e3779b9#define MX (((z&gt;&gt;5^y&lt;&lt;2) + (y&gt;&gt;3^z&lt;&lt;4)) ^ ((sum^y) + (key[(p&amp;3)^e] ^ z)))   void btea(uint32_t *v, int n, uint32_t const key[4]) &#123;    uint32_t y, z, sum;    unsigned p, rounds, e;    if (n &gt; 1) &#123;      ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/04/25/CTF/2022%E7%AC%AC%E4%BA%8C%E5%B1%8A%E7%BD%91%E5%88%83%E6%9D%AF%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9B/" title="2022第二届网刃杯网络安全大赛">2022第二届网刃杯网络安全大赛</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-04-25T13:32:31.000Z" title="Created 2022-04-25 21:32:31">2022-04-25</time></span></div><div class="content">
-
-俺过来学习一下：
-reRe_funtion压缩包有密码，可以看到右边有16进制数字，通过开头可以确定是png格式的文件
-放到010editor中，改一下后缀，即可看到解码密码：
-
-
-解压后，给出了的两个文件，先从re_easy_func1.exe中获取base64魔改后的加密字符串
-123456789101112131415161718#include &lt;stdio.h&gt;int main(int argv,char** argc)&#123;	int s[28] = &#123;0x64, 0x71, 0x54, 0x54, 0x64, 0x78, 0x74, 0x78, 0x64, 0x41, 0x40, 0x48, 0x70, 0x6D, 0x18, 0x4A, 0x41, 0x78, 0x66, 0x72, 0x41, 0x78, 0x5E, 0x4E, 0x5D, 0x52, 0x0E, 0x3D&#125;;	int f[28] = &#123;0&#125;;	for (int i = 0;i&lt;28;i++)&#123;		if(i%2 == 0)&# ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/04/20/CTF/2021CISCN/" title="2021CISCN">2021CISCN</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-04-20T01:16:11.000Z" title="Created 2022-04-20 09:16:11">2022-04-20</time></span></div><div class="content">rsa题目：
+    })(window)</script><meta name="generator" content="Hexo 6.1.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/ke1os.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">26</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">13</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">ke1os' blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/04/20/CTF/2021CISCN/" title="2021CISCN">2021CISCN</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-04-20T01:16:11.000Z" title="Created 2022-04-20 09:16:11">2022-04-20</time></span></div><div class="content">rsa题目：
 123456789101112131415161718192021222324252627282930313233343536373839from flag import text,flagimport md5from Crypto.Util.number import long_to_bytes,bytes_to_long,getPrimeassert md5.new(text).hexdigest() == flag[6:-1]msg1 = text[:xx]msg2 = text[xx:yy]msg3 = text[yy:]msg1 = bytes_to_long(msg1)msg2 = bytes_to_long(msg2)msg3 = bytes_to_long(msg3)p1 = getPrime(512)q1 = getPrime(512)N1 = p1*q1e1 = 3print pow(msg1,e1,N1)print (e1,N1)p2 = getPrime(512)q2 = getPrime(512)N2 = p2*q2e2 = 17e3 = 655 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/04/18/CTF/2022TAMUctf/" title="2022TAMUctf">2022TAMUctf</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-04-18T12:24:49.000Z" title="Created 2022-04-18 20:24:49">2022-04-18</time></span></div><div class="content">
 
 CryptoTake a Byte (rsa爆破m)1234N = 142340601329766635770777206868142025827135648303906321521767950463359821968347786484195570468286189226989358219855587259388045702266863705647272136227951246915219010211812867670881597286343297521061070264928021561647069809027686627213745350820280726089198348218787227379658142796612755695608708166251723918573e = 65537gigem&#123; 20051828644545482229736628106141244640599101529879885105710784481396775912918792507483557891429556884620407940642293639975351089356719 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/04/18/CTF/2022CrewCTF/" title="2022CrewCTF">2022CrewCTF</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-04-18T06:47:48.000Z" title="Created 2022-04-18 14:47:48">2022-04-18</time></span></div><div class="content">
@@ -258,7 +207,133 @@ reversez3ida64打开之后，查看主函数
 
 
 上脚本
-12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273from z3 import *# lis ==\# [\#   0x17, 0x4F, 0x00, 0x00, 0xF6, 0x9C, 0x00, 0x00, 0xDB, 0x8D, \#   0x00, 0x00, 0xA6, 0x8E, 0x00, 0x00, 0x29, 0x69, 0x00, 0x00, \#   0x11, 0x99, 0x00, 0x00, 0xA2, 0x40, 0x00, 0x00, 0x3E, 0x2F, \#   0x00, 0x00, 0xB6, 0x62 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#content-inner">3</a><a class="extend next" rel="next" href="/page/3/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/ke1os.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">ke1os</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">26</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">13</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/12/31/2022%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/" title="2022年度总结"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2022年度总结"/></a><div class="content"><a class="title" href="/2022/12/31/2022%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/" title="2022年度总结">2022年度总结</a><time datetime="2022-12-31T12:50:04.000Z" title="Created 2022-12-31 20:50:04">2022-12-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/22/BUU-reverse/nullbook%E7%BB%83%E4%B9%A0/" title="nullbook练习"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="nullbook练习"/></a><div class="content"><a class="title" href="/2022/05/22/BUU-reverse/nullbook%E7%BB%83%E4%B9%A0/" title="nullbook练习">nullbook练习</a><time datetime="2022-05-22T09:07:59.000Z" title="Created 2022-05-22 17:07:59">2022-05-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/13/mobile/anroid%E7%9A%84%E5%AD%A6%E4%B9%A0/" title="anroid的学习"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="anroid的学习"/></a><div class="content"><a class="title" href="/2022/05/13/mobile/anroid%E7%9A%84%E5%AD%A6%E4%B9%A0/" title="anroid的学习">anroid的学习</a><time datetime="2022-05-13T09:29:43.000Z" title="Created 2022-05-13 17:29:43">2022-05-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/10/CTF/2022catf1agctf/" title="2022catf1agctf"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2022catf1agctf"/></a><div class="content"><a class="title" href="/2022/05/10/CTF/2022catf1agctf/" title="2022catf1agctf">2022catf1agctf</a><time datetime="2022-05-10T07:56:51.000Z" title="Created 2022-05-10 15:56:51">2022-05-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/08/CTF/2022angstromctf/" title="2022angstromctf"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2022angstromctf"/></a><div class="content"><a class="title" href="/2022/05/08/CTF/2022angstromctf/" title="2022angstromctf">2022angstromctf</a><time datetime="2022-05-08T01:58:39.000Z" title="Created 2022-05-08 09:58:39">2022-05-08</time></div></div></div></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/BUU-crypto/" style="font-size: 1.1em; color: #999">BUU-crypto</a> <a href="/tags/BUU-reverse%E7%BB%83%E4%B9%A0/" style="font-size: 1.1em; color: #999">BUU-reverse练习</a> <a href="/tags/CTF%E5%A4%8D%E7%8E%B0/" style="font-size: 1.3em; color: #99a1ac">CTF复现</a> <a href="/tags/CTF%E8%B5%9B%E5%90%8E%E5%A4%8D%E7%8E%B0/" style="font-size: 1.5em; color: #99a9bf">CTF赛后复现</a> <a href="/tags/anroid/" style="font-size: 1.1em; color: #999">anroid</a> <a href="/tags/nullbookl%E7%BB%83%E4%B9%A0%E9%A2%98/" style="font-size: 1.1em; color: #999">nullbookl练习题</a> <a href="/tags/reverse/" style="font-size: 1.1em; color: #999">reverse</a> <a href="/tags/rsa/" style="font-size: 1.1em; color: #999">rsa</a> <a href="/tags/%E5%B8%B8%E8%A7%81%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" style="font-size: 1.1em; color: #999">常见加密算法</a> <a href="/tags/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/" style="font-size: 1.1em; color: #999">年度总结</a> <a href="/tags/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-re/" style="font-size: 1.1em; color: #999">攻防世界-re</a> <a href="/tags/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-pwn/" style="font-size: 1.1em; color: #999">攻防世界_pwn</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 1.1em; color: #999">算法</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/12/"><span class="card-archive-list-date">December 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/05/"><span class="card-archive-list-date">May 2022</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/04/"><span class="card-archive-list-date">April 2022</span><span class="card-archive-list-count">8</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/03/"><span class="card-archive-list-date">March 2022</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/02/"><span class="card-archive-list-date">February 2022</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/01/"><span class="card-archive-list-date">January 2022</span><span class="card-archive-list-count">2</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">26</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2022-12-31T12:57:10.784Z"></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By ke1os</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273from z3 import *# lis ==\# [\#   0x17, 0x4F, 0x00, 0x00, 0xF6, 0x9C, 0x00, 0x00, 0xDB, 0x8D, \#   0x00, 0x00, 0xA6, 0x8E, 0x00, 0x00, 0x29, 0x69, 0x00, 0x00, \#   0x11, 0x99, 0x00, 0x00, 0xA2, 0x40, 0x00, 0x00, 0x3E, 0x2F, \#   0x00, 0x00, 0xB6, 0x62 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/03/31/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-pwn/" title="攻防世界_pwn新手练习区">攻防世界_pwn新手练习区</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-03-31T02:32:06.000Z" title="Created 2022-03-31 10:32:06">2022-03-31</time></span></div><div class="content">
+
+level0
+
+首先用checksec查看一下保护
+
+
+是一个64位的程序，开了NX防护（堆栈不可执行）
+
+
+这边有个system()函数
+
+
+
+
+在这个函数中，buf分配了128个字节，但是read()函数中，我们却可以传入0x200个字节
+
+
+
+
+rbp+8是read函数的返回地址
+
+
+
+
+我们需要把rbp+8给覆盖掉，并且在后面添加callsystem函数的地址，这样就会执行callsystem，可以进行下一步的cat falg操作了……
+
+
+123456789101112131415161718192021from pwn import *#context(arch=&#x27;amd64&#x27;, os=&#x27;linux&#x27;, log_level=&#x27;debug&#x27;)file_name = &quot;./ke1os&quot;debug = 0if debug == 1:	r = remote(&#x27;111.200.241.244&#x27;, 60230)else:	r = process(file_name)elf = ELF ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/03/30/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-re/" title="攻防世界_re">攻防世界_re</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-03-30T02:32:06.000Z" title="Created 2022-03-30 10:32:06">2022-03-30</time></span></div><div class="content">
+
+logmein （动调）
+
+动调出来右边的值就可以了
+123flag = 	[0x52,0x43,0x33,0x2d,0x32,0x30,0x31,0x36,0x2d,0x58,0x4f,0x52,0x49,0x53,0x47,0x55,0x44]for i in flag:	print(chr(i),end = &quot;&quot;)
+
+RC3-2016-XORISGUD
+insanity
+
+
+
+9447{This_is_a_flag}
+python-trade在线pyc反汇编
+123456789101112131415161718192021#!/usr/bin/env python# visit https://tool.lu/pyc/ for more informationimport base64def encode(message):    s = &#x27;&#x27;    for i in message:        x = ord(i) ^ 32        x = x + 16        s += chr(x)        return b ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/03/27/CTF/2022DASCTF/" title="2022DASCTF">2022DASCTF</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-03-27T12:59:10.000Z" title="Created 2022-03-27 20:59:10">2022-03-27</time></span></div><div class="content">
+
+解出来两题，别的题目等有空再复现
+reverseeasyrere签到题，首先是查壳，AS壳，脱壳动调不起来。在此非常感谢Facker007师傅，否则我解不出来😂。
+
+
+
+
+
+
+ASpack脱壳赛后学习一下如何脱壳：
+第一步，运行pushad这个指令，然后发现之后esp改变了，这时候可以使用ESP定律了
+
+
+
+
+第二步，在改变的esp处，右键，数据窗口跟随
+
+
+
+
+第三步，下硬件断点无论选择多少个字节，只要第一个字节是esp所指向的就行，然后下硬件断点，随便是什么大小都行
+
+
+
+
+第四步，F9+数次F8，遇到一个retn大跳转，跳转到奇怪的地方，右键分析，从模块中删除分析
+
+
+
+
+第五步，删除断点
+
+
+
+
+第六步，右键选择od脱壳插件，点击脱壳，选择地方保存即可。可以选择重建或者不重建输入表，都可以试一试。
+
+
+
+
+
+
+题解用die查看还能查看到壳
+
+
+
+
+但是用exeinfope查看，已经识别不出来了
+
+
+
+
+放入ida中反汇编，上面那么多的函数，只有最后一个是对输入的字符串进行转换，跟进
+
+
+
+
+动调后发现，真正有效的，只有最后的异或，Str是input，与dword_4929 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/03/22/BUU_crypto/rsa%E5%90%88%E9%9B%86/" title="rsa合集">rsa合集</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-03-22T13:01:37.000Z" title="Created 2022-03-22 21:01:37">2022-03-22</time></span></div><div class="content">
+
+基础知识数论知识在这边简单阐述rsa需要用到的数论知识：
+
+互质关系，两个正整数除了1以外没有其他公因子，就称这两个数为互质关系（coprime）
+
+欧拉函数:任意给定正整数n，计算小于等于n正整数中，与n构成互质关系的个数
+
+欧拉定理:
+
+
+也就是说，a的φ(n)次方被n除的余数为1。或者说，a的φ(n)次方减去1，可以被n整除。比如，3和7互质，而7的欧拉函数φ(7)等于6，所以3的6次方（729）减去1，可以被7整除（728&#x2F;7&#x3D;104）。
+关于欧拉函数的结论很多，可以去别的地方查找，但是这边只介绍两个
+（1） 如果n是质数，则 φ(n)&#x3D;n-1
+（2） 如果n可以分解成两个互质的整数之积：
+n &#x3D; p1 * p2    &#x3D;&#x3D;&gt;    φ(n) &#x3D; φ(p1p2) &#x3D; φ(p1)φ(p2)
+
+模反元素：如果两个正整数a和n互质，那么一定可以找到整数b，使得ab-1被n整除
+
+
+比如，3和11互质，那么3的模反元素就是4，因为 (3 × 4)-1 可以被11整除。显然，模反元素不止一个， 4加 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/03/01/%E7%AE%97%E6%B3%95/leetcode-%E6%AF%8F%E6%97%A5%E7%BB%83%E4%B9%A0/" title="leetcode_每日练习">leetcode_每日练习</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-03-01T14:39:32.000Z" title="Created 2022-03-01 22:39:32">2022-03-01</time></span></div><div class="content">
+
+728.自除数
+
+12345678910111213141516class Solution:    def selfDividingNumbers(self, left: int, right: int) -&gt; List[int]:        arr = []        for i in range(left,right+1):            flag = True            lis = list(str(i))            if &#x27;0&#x27; in lis:                continue            for j in lis:                if i % int(j) != 0:                    flag = False                    break            if flag == True:                arr.append(i)        return arr
+
+注意除数为0的可能，范围为1-100 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#content-inner">3</a><a class="extend next" rel="next" href="/page/3/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/ke1os.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">ke1os</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">26</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">13</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">It 's ke1os' blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/12/31/2022%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/" title="2022年度总结"><img src="/img/home.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2022年度总结"/></a><div class="content"><a class="title" href="/2022/12/31/2022%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/" title="2022年度总结">2022年度总结</a><time datetime="2022-12-31T12:50:04.000Z" title="Created 2022-12-31 20:50:04">2022-12-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/22/BUU-reverse/nullbook%E7%BB%83%E4%B9%A0/" title="nullbook练习"><img src="/img/home.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="nullbook练习"/></a><div class="content"><a class="title" href="/2022/05/22/BUU-reverse/nullbook%E7%BB%83%E4%B9%A0/" title="nullbook练习">nullbook练习</a><time datetime="2022-05-22T09:07:59.000Z" title="Created 2022-05-22 17:07:59">2022-05-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/13/mobile/anroid%E7%9A%84%E5%AD%A6%E4%B9%A0/" title="anroid的学习"><img src="/img/home.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="anroid的学习"/></a><div class="content"><a class="title" href="/2022/05/13/mobile/anroid%E7%9A%84%E5%AD%A6%E4%B9%A0/" title="anroid的学习">anroid的学习</a><time datetime="2022-05-13T09:29:43.000Z" title="Created 2022-05-13 17:29:43">2022-05-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/10/CTF/2022catf1agctf/" title="2022catf1agctf"><img src="/img/home.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2022catf1agctf"/></a><div class="content"><a class="title" href="/2022/05/10/CTF/2022catf1agctf/" title="2022catf1agctf">2022catf1agctf</a><time datetime="2022-05-10T07:56:51.000Z" title="Created 2022-05-10 15:56:51">2022-05-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/08/CTF/2022angstromctf/" title="2022angstromctf"><img src="/img/home.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2022angstromctf"/></a><div class="content"><a class="title" href="/2022/05/08/CTF/2022angstromctf/" title="2022angstromctf">2022angstromctf</a><time datetime="2022-05-08T01:58:39.000Z" title="Created 2022-05-08 09:58:39">2022-05-08</time></div></div></div></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/BUU-crypto/" style="font-size: 1.1em; color: #999">BUU-crypto</a> <a href="/tags/BUU-reverse%E7%BB%83%E4%B9%A0/" style="font-size: 1.1em; color: #999">BUU-reverse练习</a> <a href="/tags/CTF%E5%A4%8D%E7%8E%B0/" style="font-size: 1.3em; color: #99a1ac">CTF复现</a> <a href="/tags/CTF%E8%B5%9B%E5%90%8E%E5%A4%8D%E7%8E%B0/" style="font-size: 1.5em; color: #99a9bf">CTF赛后复现</a> <a href="/tags/anroid/" style="font-size: 1.1em; color: #999">anroid</a> <a href="/tags/nullbook/" style="font-size: 1.1em; color: #999">nullbook</a> <a href="/tags/reverse/" style="font-size: 1.1em; color: #999">reverse</a> <a href="/tags/rsa/" style="font-size: 1.1em; color: #999">rsa</a> <a href="/tags/%E5%B8%B8%E8%A7%81%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" style="font-size: 1.1em; color: #999">常见加密算法</a> <a href="/tags/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/" style="font-size: 1.1em; color: #999">年度总结</a> <a href="/tags/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-re/" style="font-size: 1.1em; color: #999">攻防世界-re</a> <a href="/tags/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-pwn/" style="font-size: 1.1em; color: #999">攻防世界_pwn</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 1.1em; color: #999">算法</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/12/"><span class="card-archive-list-date">December 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/05/"><span class="card-archive-list-date">May 2022</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/04/"><span class="card-archive-list-date">April 2022</span><span class="card-archive-list-count">8</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/03/"><span class="card-archive-list-date">March 2022</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/02/"><span class="card-archive-list-date">February 2022</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/01/"><span class="card-archive-list-date">January 2022</span><span class="card-archive-list-count">2</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">26</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2022-12-31T14:46:43.216Z"></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By ke1os</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
 POWERMODE.shake = true;
 POWERMODE.mobile = false;
 document.body.addEventListener('input', POWERMODE);
